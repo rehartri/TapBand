@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">TapBand</string>
+    <string name="none"></string>
 </resources>
