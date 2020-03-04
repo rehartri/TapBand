@@ -2,9 +2,12 @@ package com.example.tapband;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 
@@ -15,18 +18,20 @@ public class MenuActivity extends AppCompatActivity {
     Button chooseInstrumentButton;
     ImageView instrumentImageView;
 
+    @SuppressLint("SourceLockedOrientationActivity")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);//Do not touch
         setContentView(R.layout.activity_menu);//Do not touch
-
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         keyboardIntent = new Intent(this, MainActivity.class); //Intent allows data to be shared between activities
 
         nextActivityButton = findViewById(R.id.nextActivityButton); //Finds the button and gives it a name
         chooseInstrumentButton = findViewById(R.id.ChooseInstrument);
         instrumentImageView = findViewById(R.id.instrumentView);
 
-        final int drawables[] = new int[] { R.drawable.piano}; // Put images here
+        final int[] drawables = new int[] { R.drawable.piano}; // Put images here
 
 
         //Button click listener -- aka this gets called when the continue button is pressed
