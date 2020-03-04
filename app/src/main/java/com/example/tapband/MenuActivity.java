@@ -23,7 +23,7 @@ public class MenuActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);//Do not touch
         setContentView(R.layout.activity_menu);//Do not touch
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE); //Locks main menu into landscape orientation
         keyboardIntent = new Intent(this, MainActivity.class); //Intent allows data to be shared between activities
 
         nextActivityButton = findViewById(R.id.nextActivityButton); //Finds the button and gives it a name
