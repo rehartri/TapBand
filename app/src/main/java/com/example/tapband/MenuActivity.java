@@ -23,7 +23,6 @@ public class MenuActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);//Do not touch
         setContentView(R.layout.activity_menu);//Do not touch
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         keyboardIntent = new Intent(this, MainActivity.class); //Intent allows data to be shared between activities
 
