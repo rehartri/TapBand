@@ -26,6 +26,8 @@ public class MenuActivity extends AppCompatActivity {
         chooseInstrumentButton = findViewById(R.id.ChooseInstrument);
         instrumentImageView = findViewById(R.id.instrumentView);
 
+        final int drawables[] = new int[] { R.drawable.piano}; // Put images here
+
 
         //Button click listener -- aka this gets called when the continue button is pressed
         nextActivityButton.setOnClickListener(new View.OnClickListener() {
@@ -36,9 +38,14 @@ public class MenuActivity extends AppCompatActivity {
         });
         //Button click listener -- gets called when choose instrument button is pressed
         chooseInstrumentButton.setOnClickListener(new View.OnClickListener() {
+            int currentImage = 0;
             @Override
             public void onClick(View view) {
-                instrumentImageView.setImageResource(R.drawable.ic_launcher_background); //Set new image, THIS IMAGE IS A PLACEHOLDER TO SHOW THAT THE BUTTON WORKS
+                if (currentImage > drawables.length-1){ // looks for the index being too large
+                    currentImage = 0; //index was too large, reset
+                }
+                instrumentImageView.setImageResource(drawables[currentImage]); //Set new image
+                currentImage++; // add to index
             }
         });
     }
