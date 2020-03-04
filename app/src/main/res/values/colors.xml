@@ -5,4 +5,6 @@
     <color name="colorAccent">#D81B60</color>
     <color name="ButtonColor">#0000FF</color>
     <color name="ButtonColor2">#000000</color>
+    <color name="MenuButtons">#00AAFF</color>
+    <color name="Red">#FF0000</color>
 </resources>

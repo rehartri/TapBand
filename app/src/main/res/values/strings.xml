@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">TapBand</string>
-    <string name="none"></string>
+    <string name="none">""</string>
+    <string name="Menu">"Menu"</string>
+    <string name="Help">"Help"</string>
+    <string name="Save">"Save Recording"</string>
 </resources>

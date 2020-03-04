@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="horizontal"
     tools:context=".MainActivity">
 
     <Button
@@ -302,6 +301,76 @@
         android:background="@color/ButtonColor"
         android:text="@string/none"
         app:layout_constraintBottom_toTopOf="@+id/CHi"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/Menu"
+        android:layout_width="75dp"
+        android:layout_height="60dp"
+        android:background="@color/MenuButtons"
+        android:text="@string/Menu"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/Record"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:background="@android:drawable/presence_invisible"
+        android:text="@string/none"
+        app:layout_constraintEnd_toStartOf="@+id/SaveRecording"
+        app:layout_constraintTop_toTopOf="parent" />
+<!--    android:backgroundTint="@color/Red"-->
+
+    <Button
+        android:id="@+id/SaveRecording"
+        android:layout_width="100dp"
+        android:layout_height="60dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@color/MenuButtons"
+        android:orientation="horizontal"
+        android:text="@string/Save"
+        app:layout_constraintEnd_toStartOf="@+id/StartOver"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/StartOver"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:background="@android:drawable/ic_media_previous"
+        android:text="@string/none"
+        app:layout_constraintEnd_toStartOf="@+id/Play"
+        app:layout_constraintTop_toTopOf="parent" />
+<!--    android:backgroundTint="@color/ButtonColor2"-->
+
+    <Button
+        android:id="@+id/Play"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:background="@android:drawable/ic_media_play"
+        android:text="@string/none"
+        app:layout_constraintEnd_toStartOf="@+id/Pause"
+        app:layout_constraintTop_toTopOf="parent" />
+<!--    android:backgroundTint="@color/ButtonColor2"-->
+
+    <Button
+        android:id="@+id/Pause"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:background="@android:drawable/ic_media_pause"
+        android:text="@string/none"
+        app:layout_constraintEnd_toStartOf="@+id/Help"
+        app:layout_constraintTop_toTopOf="parent" />
+    <!--        android:backgroundTint="@color/ButtonColor2"-->
+
+    <Button
+        android:id="@+id/Help"
+        android:layout_width="75dp"
+        android:layout_height="60dp"
+        android:background="@color/MenuButtons"
+        android:text="@string/Help"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
