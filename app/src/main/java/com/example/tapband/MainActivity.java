@@ -15,6 +15,14 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Button CSharp = findViewById(R.id.CSharp);
+        Button DSharp = findViewById(R.id.DSharp);
+
+        //If you touch these the buttons will be messed up, this is the only way I could find to do this
+        CSharp.bringToFront();
+        DSharp.bringToFront();
+
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE); //Locks piano screen into landscape orientation.
     }
 }

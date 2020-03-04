@@ -10,7 +10,6 @@
         android:id="@+id/CLo"
         android:layout_width="86dp"
         android:layout_height="154dp"
-        android:layout_marginTop="258dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:background="@color/ButtonColor"
@@ -18,15 +17,13 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/D"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/CLo2" />
 
     <Button
         android:id="@+id/CLo2"
         android:layout_width="58dp"
         android:layout_height="154dp"
-        android:layout_marginTop="104dp"
-        android:layout_marginEnd="1dp"
-        android:layout_marginRight="1dp"
+        android:layout_marginTop="103dp"
         android:background="@color/ButtonColor"
         android:text="@string/none"
         app:layout_constraintBottom_toTopOf="@+id/CLo"
@@ -39,37 +36,36 @@
         android:id="@+id/CSharp"
         android:layout_width="45dp"
         android:layout_height="154dp"
-        android:layout_marginStart="59dp"
-        android:layout_marginLeft="59dp"
         android:layout_marginTop="103dp"
         android:background="@color/ButtonColor2"
         android:text="@string/none"
         app:layout_constraintBottom_toTopOf="@+id/CLo"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/D2"
+        app:layout_constraintStart_toEndOf="@+id/CLo2"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/D"
         android:layout_width="85dp"
         android:layout_height="154dp"
-        android:layout_marginTop="258dp"
         android:layout_marginEnd="1dp"
         android:layout_marginRight="1dp"
         android:background="@color/ButtonColor"
         android:text="@string/none"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/E"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/D2" />
 
     <Button
         android:id="@+id/D2"
         android:layout_width="40dp"
         android:layout_height="154dp"
-        android:layout_marginTop="104dp"
+        android:layout_marginTop="103dp"
         android:background="@color/ButtonColor"
         android:text="@string/none"
         app:layout_constraintBottom_toTopOf="@+id/D"
         app:layout_constraintEnd_toStartOf="@+id/DSharp"
+        app:layout_constraintStart_toEndOf="@+id/CSharp"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
@@ -79,26 +75,24 @@
         android:layout_marginTop="103dp"
         android:layout_marginEnd="1dp"
         android:layout_marginRight="1dp"
-        android:layout_marginBottom="1dp"
         android:background="@color/ButtonColor2"
         android:text="@string/none"
         app:layout_constraintBottom_toTopOf="@+id/E"
         app:layout_constraintEnd_toStartOf="@+id/E2"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintStart_toEndOf="@+id/D2"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/E"
         android:layout_width="85dp"
         android:layout_height="154dp"
-        android:layout_marginTop="258dp"
         android:layout_marginEnd="1dp"
         android:layout_marginRight="1dp"
         android:background="@color/ButtonColor"
         android:text="@string/none"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/F"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/E2" />
 
     <Button
         android:id="@+id/E2"
@@ -146,7 +140,6 @@
         android:layout_marginTop="103dp"
         android:layout_marginEnd="1dp"
         android:layout_marginRight="1dp"
-        android:layout_marginBottom="1dp"
         android:background="@color/ButtonColor2"
         android:text="@string/none"
         app:layout_constraintBottom_toTopOf="@+id/F"
@@ -187,7 +180,6 @@
         android:layout_marginTop="103dp"
         android:layout_marginEnd="1dp"
         android:layout_marginRight="1dp"
-        android:layout_marginBottom="1dp"
         android:background="@color/ButtonColor2"
         android:text="@string/none"
         app:layout_constraintBottom_toTopOf="@+id/G"
@@ -228,7 +220,6 @@
         android:layout_marginTop="103dp"
         android:layout_marginEnd="1dp"
         android:layout_marginRight="1dp"
-        android:layout_marginBottom="1dp"
         android:background="@color/ButtonColor2"
         android:text="@string/none"
         app:layout_constraintBottom_toTopOf="@+id/A"
@@ -298,7 +289,7 @@
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:background="@android:drawable/presence_invisible"
-        android:backgroundTint="Red"
+        android:backgroundTint="@color/Red"
         android:text="@string/none"
         app:layout_constraintEnd_toStartOf="@+id/SaveRecording"
         app:layout_constraintTop_toTopOf="parent" />
