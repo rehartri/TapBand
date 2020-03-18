@@ -4,4 +4,6 @@
     <string name="Menu">"Menu"</string>
     <string name="Help">"Help"</string>
     <string name="Save">"Save Recording"</string>
+    <string name="Back">"Back"</string>
+    <string name="Help_Menu">"Help Menu"</string>
 </resources>
