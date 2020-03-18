@@ -1,29 +1,29 @@
 package com.example.tapband;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.media.MediaPlayer;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity {
-    private Button helpButton;
+    Instrument instrument;
+
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @SuppressLint("SourceLockedOrientationActivity")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        helpButton = findViewById(R.id.Help);
-        helpButton.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
-                moveToHelpActivity();
-            }
-        });
 
         Button CSharp = findViewById(R.id.CSharp);
         Button DSharp = findViewById(R.id.DSharp);
@@ -38,8 +38,86 @@ public class MainActivity extends AppCompatActivity {
         GSharp.bringToFront();
         ASharp.bringToFront();
 
-
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE); //Locks piano screen into landscape orientation.
+
+        setInstrument(getIntent().getIntExtra("type", 0)); //Creates instrument based on selection in menu
+    }
+
+    /**
+     * Makes creating media players a bit faster
+     * @param soundID The integer id of the sound you want
+     * ex: R.raw.piano_c
+     * @return A media player containing this sound
+     */
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    private MediaPlayer createPlayer(int soundID){
+        return MediaPlayer.create(this, soundID);
+    }
+
+    /**
+     * Creates a new instrument by passing it the keyboard buttons form the main activity
+     * @return The new instrument
+     */
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    public Instrument createInstrument(){
+        ArrayList<Button> buttonList = new ArrayList<>();
+        buttonList.add((Button)findViewById(R.id.CLo));
+        buttonList.add((Button)findViewById(R.id.CSharp));
+        buttonList.add((Button)findViewById(R.id.D));
+        buttonList.add((Button)findViewById(R.id.DSharp));
+        buttonList.add((Button)findViewById(R.id.E));
+        buttonList.add((Button)findViewById(R.id.F));
+        buttonList.add((Button)findViewById(R.id.FSharp));
+        buttonList.add((Button)findViewById(R.id.G));
+        buttonList.add((Button)findViewById(R.id.GSharp));
+        buttonList.add((Button)findViewById(R.id.A));
+        buttonList.add((Button)findViewById(R.id.ASharp));
+        buttonList.add((Button)findViewById(R.id.B));
+        buttonList.add((Button)findViewById(R.id.CHi));
+        return new Instrument(buttonList);
+
+    }
+
+    /**
+     * Sets the sounds used for the keyboard and initializes instrument
+     * @param type the value that determines what type of sounds will be used by the instrument class
+     */
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    public void setInstrument(int type){
+        if(instrument == null){
+            instrument = createInstrument();
+        }
+        switch(type){
+            case 1:
+                instrument.changeInstrument(pianoBuild());
+                break;
+            default:
+                instrument.changeInstrument(pianoBuild());
+                break;
+        }
+    }
+
+    /**
+     * Creates a list of media players containing piano sounds
+     * @return The list of media players
+     */
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    public ArrayList<MediaPlayer> pianoBuild(){
+        ArrayList<MediaPlayer> playerList= new ArrayList<>();
+        playerList.add(createPlayer(R.raw.piano_c));
+        playerList.add(createPlayer(R.raw.piano_csharp));
+        playerList.add(createPlayer(R.raw.piano_d));
+        playerList.add(createPlayer(R.raw.piano_dsharp));
+        playerList.add(createPlayer(R.raw.piano_e));
+        playerList.add(createPlayer(R.raw.piano_f));
+        playerList.add(createPlayer(R.raw.piano_fsharp));
+        playerList.add(createPlayer(R.raw.piano_g));
+        playerList.add(createPlayer(R.raw.piano_gsharp));
+        playerList.add(createPlayer(R.raw.piano_a));
+        playerList.add(createPlayer(R.raw.piano_asharp));
+        playerList.add(createPlayer(R.raw.piano_b));
+        playerList.add(createPlayer(R.raw.piano_c));
+        return playerList;
     }
 
     /*

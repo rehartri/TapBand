@@ -17,6 +17,7 @@ public class MenuActivity extends AppCompatActivity {
     Button nextActivityButton;
     Button chooseInstrumentButton;
     ImageView instrumentImageView;
+    int currentImage = 0;
 
     @SuppressLint("SourceLockedOrientationActivity")
     @Override
@@ -38,12 +39,12 @@ public class MenuActivity extends AppCompatActivity {
         nextActivityButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                keyboardIntent.putExtra("type", currentImage);
                 nextActivity();
             }
         });
         //Button click listener -- gets called when choose instrument button is pressed
         chooseInstrumentButton.setOnClickListener(new View.OnClickListener() {
-            int currentImage = 0;
             @Override
             public void onClick(View view) {
                 if (currentImage > drawables.length-1){ // looks for the index being too large
