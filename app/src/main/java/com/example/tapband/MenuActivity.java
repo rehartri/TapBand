@@ -39,7 +39,7 @@ public class MenuActivity extends AppCompatActivity {
         nextActivityButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                keyboardIntent.putExtra("type", currentImage);
+                keyboardIntent.putExtra("type", currentImage); //Passes the value that determines the type of instrument to create to the main activity
                 nextActivity();
             }
         });

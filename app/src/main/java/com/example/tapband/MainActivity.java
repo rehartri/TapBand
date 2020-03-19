@@ -12,11 +12,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.SeekBar;
 
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
-    Instrument instrument;
+    Instrument instrument; //The instrument that handles the sounds made by the keyboard
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @SuppressLint("SourceLockedOrientationActivity")
@@ -55,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * Creates a new instrument by passing it the keyboard buttons form the main activity
+     * Creates a new instrument by passing it the keyboard buttons and pitch seek bar form the main activity
      * @return The new instrument
      */
     @RequiresApi(api = Build.VERSION_CODES.M)
@@ -74,7 +75,8 @@ public class MainActivity extends AppCompatActivity {
         buttonList.add((Button)findViewById(R.id.ASharp));
         buttonList.add((Button)findViewById(R.id.B));
         buttonList.add((Button)findViewById(R.id.CHi));
-        return new Instrument(buttonList);
+        SeekBar seekBar = findViewById(R.id.seekBar);
+        return new Instrument(buttonList, seekBar);
 
     }
 

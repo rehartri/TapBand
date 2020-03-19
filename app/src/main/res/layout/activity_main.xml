@@ -237,8 +237,9 @@
         android:layout_marginLeft="15dp"
         android:layout_marginEnd="15dp"
         android:layout_marginRight="15dp"
-        android:max="2"
-        android:progress="1"
+        android:min="-1"
+        android:max="1"
+        android:progress="0"
         app:layout_constraintEnd_toStartOf="@+id/Record"
         app:layout_constraintStart_toEndOf="@+id/Menu"
         app:layout_constraintTop_toTopOf="parent" />
