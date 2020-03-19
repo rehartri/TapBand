@@ -18,7 +18,7 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
     Instrument instrument; //The instrument that handles the sounds made by the keyboard
-
+    Button helpButton; //Button to reach the help menu
     @RequiresApi(api = Build.VERSION_CODES.M)
     @SuppressLint("SourceLockedOrientationActivity")
     @Override
@@ -38,6 +38,15 @@ public class MainActivity extends AppCompatActivity {
         FSharp.bringToFront();
         GSharp.bringToFront();
         ASharp.bringToFront();
+
+        //Provides the functionality for the help button. Please do not delete!
+        helpButton = findViewById(R.id.Help);
+        helpButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                moveToHelpActivity();
+            }
+        });
 
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE); //Locks piano screen into landscape orientation.
 
