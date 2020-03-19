@@ -1,6 +1,8 @@
 package com.example.tapband;
 
+import android.graphics.Color;
 import android.graphics.Rect;
+import android.graphics.drawable.ColorDrawable;
 import android.media.MediaPlayer;
 import android.media.PlaybackParams;
 import android.os.Build;
@@ -19,12 +21,14 @@ public class Key{
     PlaybackParams params = new PlaybackParams();
     private Rect rect = new Rect();
     boolean pressed = false;
+    int color;
 
     /**
      * @param button  The button associated with this key
      */
     public Key(final Button button) {
         this.button = button;
+        color = ((ColorDrawable)button.getBackground()).getColor();
         setPitch(1);
 
         button.setOnTouchListener(new View.OnTouchListener() {
@@ -56,12 +60,13 @@ public class Key{
     }
 
     private void startup(){
+        button.setBackgroundColor(Color.argb(255, 0, 176, 255));
         player.seekTo(0);
         player.start();
     }
 
     private void end(){
-
+        button.setBackgroundColor(color);
     }
 
     public void setPlayer(MediaPlayer player) {
