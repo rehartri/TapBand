@@ -19,6 +19,7 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
     Instrument instrument; //The instrument that handles the sounds made by the keyboard
     Button helpButton; //Button to reach the help menu
+    Button menuButton; //Button to go back to main menu.
     @RequiresApi(api = Build.VERSION_CODES.M)
     @SuppressLint("SourceLockedOrientationActivity")
     @Override
@@ -45,6 +46,15 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 moveToHelpActivity();
+            }
+        });
+
+        //Provides the functionality for the menu button. Please do not delete!
+        menuButton = findViewById(R.id.Menu);
+        menuButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                finish();
             }
         });
 
