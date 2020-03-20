@@ -23,7 +23,7 @@ public class Key{
     boolean pressed = false; //Helps with touch events
     int color; //Initial color of the key
     float currentPitch; //The current pitch of the key
-    float basePitch = 1; //The starting pitch and multiplier for setting the pitch
+    float basePitch = 2; //The starting pitch and multiplier for setting the pitch
 
     /**
      * Creates a new key, sets the pitch, and handles the touch events
