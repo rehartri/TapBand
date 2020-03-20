@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Bundle;
@@ -18,6 +19,8 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
     Instrument instrument; //The instrument that handles the sounds made by the keyboard
+    Intent menuIntent;
+    Button recordButton;
     Button helpButton; //Button to reach the help menu
     Button menuButton; //Button to go back to main menu.
     @RequiresApi(api = Build.VERSION_CODES.M)
@@ -26,6 +29,33 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        menuIntent = new Intent(this, MenuActivity.class);
+
+        menuButton = findViewById(R.id.Menu);
+        recordButton = findViewById(R.id.Record);
+
+        menuButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                nextScreen();
+            }
+        });
+
+
+
+        recordButton.setOnClickListener(new View.OnClickListener(){
+            int color = 0;
+            @Override
+            public void onClick(View v){
+                if (color == 0) {
+                    recordButton.setBackgroundColor(Color.rgb(0, 255, 0));
+                    color = 1;
+                }else{
+                    recordButton.setBackgroundColor(Color.rgb(255, 0, 0));
+                    color = 0;
+                }
+            }
+        });
 
         Button CSharp = findViewById(R.id.CSharp);
         Button DSharp = findViewById(R.id.DSharp);
@@ -72,6 +102,10 @@ public class MainActivity extends AppCompatActivity {
     @RequiresApi(api = Build.VERSION_CODES.M)
     private MediaPlayer createPlayer(int soundID){
         return MediaPlayer.create(this, soundID);
+    }
+
+    public void nextScreen(){
+        startActivity(menuIntent);
     }
 
     /**
