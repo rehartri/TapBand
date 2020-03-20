@@ -1,5 +1,6 @@
 package com.example.tapband;
 
+import androidx.annotation.DrawableRes;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,6 +8,7 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Bundle;
@@ -48,10 +50,10 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v){
                 if (color == 0) {
-                    recordButton.setBackgroundColor(Color.rgb(0, 255, 0));
+                    recordButton.setBackgroundResource(R.drawable.round_button_green);
                     color = 1;
                 }else{
-                    recordButton.setBackgroundColor(Color.rgb(255, 0, 0));
+                    recordButton.setBackgroundResource(R.drawable.round_button_red);
                     color = 0;
                 }
             }
