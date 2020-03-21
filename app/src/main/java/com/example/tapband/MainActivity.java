@@ -141,9 +141,11 @@ public class MainActivity extends AppCompatActivity {
      */
     @RequiresApi(api = Build.VERSION_CODES.M)
     public void setInstrument(int type){
-        if(instrument == null){
-            instrument = createInstrument();
+        if(instrument != null){
+            instrument.clear();
         }
+        instrument = createInstrument();
+
         switch(type){
             case 1:
                 instrument.changeInstrument(pianoBuild());

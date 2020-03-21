@@ -35,9 +35,8 @@ class Instrument {
             int pitch;
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                pitch = progress;
                 for(Key key : keyList){
-                    key.setCurrentPitch((float)Math.pow(2, pitch));
+                    key.setCurrentPitch((float)Math.pow(2, progress - 1));
                 }
             }
 
@@ -62,6 +61,15 @@ class Instrument {
         this.playerList = playerList;
         for(int i = 0; i < keyList.size(); i++){
             keyList.get(i).setPlayer(playerList.get(i));
+        }
+    }
+
+    /**
+     * Frees up the space taken up by the media players when they are no longer needed
+     */
+    public void clear(){
+        for(MediaPlayer player : playerList){
+            player.release();
         }
     }
 
