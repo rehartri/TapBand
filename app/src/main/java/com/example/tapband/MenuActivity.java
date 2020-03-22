@@ -17,7 +17,7 @@ public class MenuActivity extends AppCompatActivity {
     Button nextActivityButton;
     Button chooseInstrumentButton;
     ImageView instrumentImageView;
-    int currentImage = 0;
+    int currentImage = 0;  //Determines the image when selecting an instrument on the menu as well as the type of instrument created in the main activity
 
     @SuppressLint("SourceLockedOrientationActivity")
     @Override

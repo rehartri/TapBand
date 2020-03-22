@@ -95,17 +95,6 @@ public class MainActivity extends AppCompatActivity {
         setInstrument(getIntent().getIntExtra("type", 0)); //Creates instrument based on selection in menu
     }
 
-    /**
-     * Makes creating media players a bit faster
-     * @param soundID The integer id of the sound you want
-     * ex: R.raw.piano_c
-     * @return A media player containing this sound
-     */
-    @RequiresApi(api = Build.VERSION_CODES.M)
-    private MediaPlayer createPlayer(int soundID){
-        return MediaPlayer.create(this, soundID);
-    }
-
     public void nextScreen(){
         startActivity(menuIntent);
     }
@@ -131,8 +120,7 @@ public class MainActivity extends AppCompatActivity {
         buttonList.add((Button)findViewById(R.id.B));
         buttonList.add((Button)findViewById(R.id.CHi));
         SeekBar seekBar = findViewById(R.id.seekBar);
-        return new Instrument(buttonList, seekBar);
-
+        return new Instrument(buttonList, seekBar, getApplicationContext());
     }
 
     /**
@@ -145,38 +133,7 @@ public class MainActivity extends AppCompatActivity {
             instrument.clear();
         }
         instrument = createInstrument();
-
-        switch(type){
-            case 1:
-                instrument.changeInstrument(pianoBuild());
-                break;
-            default:
-                instrument.changeInstrument(pianoBuild());
-                break;
-        }
-    }
-
-    /**
-     * Creates a list of media players containing piano sounds
-     * @return The list of media players
-     */
-    @RequiresApi(api = Build.VERSION_CODES.M)
-    public ArrayList<MediaPlayer> pianoBuild(){
-        ArrayList<MediaPlayer> playerList= new ArrayList<>();
-        playerList.add(createPlayer(R.raw.piano_c));
-        playerList.add(createPlayer(R.raw.piano_csharp));
-        playerList.add(createPlayer(R.raw.piano_d));
-        playerList.add(createPlayer(R.raw.piano_dsharp));
-        playerList.add(createPlayer(R.raw.piano_e));
-        playerList.add(createPlayer(R.raw.piano_f));
-        playerList.add(createPlayer(R.raw.piano_fsharp));
-        playerList.add(createPlayer(R.raw.piano_g));
-        playerList.add(createPlayer(R.raw.piano_gsharp));
-        playerList.add(createPlayer(R.raw.piano_a));
-        playerList.add(createPlayer(R.raw.piano_asharp));
-        playerList.add(createPlayer(R.raw.piano_b));
-        playerList.add(createPlayer(R.raw.piano_c));
-        return playerList;
+        instrument.setType(type);
     }
 
     /*

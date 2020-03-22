@@ -1,6 +1,6 @@
 package com.example.tapband;
 
-import android.media.MediaPlayer;
+import android.content.Context;
 import android.os.Build;
 import android.widget.Button;
 import android.widget.SeekBar;
@@ -10,10 +10,10 @@ import androidx.annotation.RequiresApi;
 import java.util.ArrayList;
 
 class Instrument {
-    private ArrayList<Key> keyList; //List of all the keys in the instrument
-    private ArrayList<Button> buttonList; //List of all buttons to be used by the keys
-    private ArrayList<MediaPlayer> playerList; //List of media players used by the keys
-    SeekBar seekBar; //Reference to the seekBar used to change key pitches
+    private ArrayList<Key> keyList = new ArrayList<>(); //List of all the keys in the instrument
+    private ArrayList<Integer> soundList = new ArrayList<>(); //List of media players used by the keys
+    private int type; //The value that determines the type of instrument created
+
 
     /**
      * Creates an instrument and handles the slider events
@@ -21,22 +21,17 @@ class Instrument {
      * @param seekBar Seek bar referenced by the keys
      */
     @RequiresApi(api = Build.VERSION_CODES.M)
-    public Instrument(ArrayList<Button> buttonList, SeekBar seekBar){
-        this.buttonList = buttonList;
-        this.seekBar = seekBar;
-        keyList = new ArrayList<>();
-        for(Button button : buttonList){
-            keyList.add(new Key(button));
+    Instrument(ArrayList<Button> buttonList, SeekBar seekBar, Context context){
+        for(Button button : buttonList){  //Creates each key and passes it it's own button to use
+            keyList.add(new Key(button, context));
         }
-        keyList.get(keyList.size() - 1).setBasePitch(keyList.get(keyList.size() - 1).getBasePitch() * 2);
+        keyList.get(keyList.size() - 1).setBasePitch(keyList.get(keyList.size() - 1).getBasePitch() * 2);  //Doubles the pitch of the high c button's sound
 
-        int pitch;
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            int pitch;
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 for(Key key : keyList){
-                    key.setCurrentPitch((float)Math.pow(2, progress - 1));
+                    key.setCurrentPitch((float)Math.pow(2, progress - 1));  //Sets the pitch of the instrument when the seek bar progress is changed
                 }
             }
 
@@ -53,26 +48,56 @@ class Instrument {
     }
 
     /**
-     * Replaces the media players of all the keys to change the sounds
-     * @param playerList The media players that will replace the one in the keys
+     * Frees up the space taken up by the media players when they are no longer needed
      */
     @RequiresApi(api = Build.VERSION_CODES.M)
-    public void changeInstrument(ArrayList<MediaPlayer> playerList){
-        this.playerList = playerList;
-        for(int i = 0; i < keyList.size(); i++){
-            keyList.get(i).setPlayer(playerList.get(i));
+    void clear(){
+        for(Key key: keyList){
+            if(key.getPlayer() != null) {
+                key.getPlayer().release();
+            }
         }
     }
 
     /**
-     * Frees up the space taken up by the media players when they are no longer needed
+     * Changes the type of sounds the instrument makes based on the value of type parameter
+     * @param type Integer value that determines instrument type
      */
-    public void clear(){
-        for(MediaPlayer player : playerList){
-            player.release();
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    void setType(int type){
+        if(this.type == type){
+            return;
+        }
+        this.type = type;
+        switch(type){
+            default:
+                pianoBuild();
+                break;
+        }
+        for(int i = 0; i < keyList.size(); i++){
+            keyList.get(i).setSound(soundList.get(i));
         }
     }
 
-
-
+    /**
+     * Changes the sounds in the sound list to piano notes
+     */
+    private void pianoBuild(){
+        if(soundList != null){
+            soundList.clear();
+        }
+        soundList.add(R.raw.piano_c);
+        soundList.add(R.raw.piano_csharp);
+        soundList.add(R.raw.piano_d);
+        soundList.add(R.raw.piano_dsharp);
+        soundList.add(R.raw.piano_e);
+        soundList.add(R.raw.piano_f);
+        soundList.add(R.raw.piano_fsharp);
+        soundList.add(R.raw.piano_g);
+        soundList.add(R.raw.piano_gsharp);
+        soundList.add(R.raw.piano_a);
+        soundList.add(R.raw.piano_asharp);
+        soundList.add(R.raw.piano_b);
+        soundList.add(R.raw.piano_c);
+    }
 }

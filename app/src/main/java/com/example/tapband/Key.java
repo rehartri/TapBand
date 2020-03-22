@@ -1,5 +1,6 @@
 package com.example.tapband;
 
+import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Rect;
 import android.graphics.drawable.ColorDrawable;
@@ -11,26 +12,27 @@ import android.view.View;
 import android.widget.Button;
 
 import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.AppCompatActivity;
 
 @RequiresApi(api = Build.VERSION_CODES.M)
-
-public class Key{
-    MediaPlayer player; //Media player key uses
-    Button button; //Button the key is associated with
-    PlaybackParams params = new PlaybackParams(); //Helps change pitch of the key
+class Key{
+    private Context mainContext;  //The context from the main menu
+    private MediaPlayer player; //Media player key uses
+    private Button button; //Button the key is associated with
+    private PlaybackParams params = new PlaybackParams(); //Helps change pitch of the key
     private Rect rect = new Rect(); //Helps track movement within the bounds of the key
-    boolean pressed = false; //Helps with touch events
-    int color; //Initial color of the key
-    float currentPitch; //The current pitch of the key
-    float basePitch = 1; //The starting pitch and multiplier for setting the pitch
+    private boolean pressed = false; //Helps with touch events
+    private int color; //Initial color of the key
+    private float currentPitch; //The current pitch of the key
+    private float basePitch = 1; //The starting pitch and multiplier for setting the pitch
+    private int soundID;  //The location of the sound file used by the key
 
     /**
      * Creates a new key, sets the pitch, and handles the touch events
      * @param button The button associated with this key
      */
-    public Key(final Button button) {
+    Key(final Button button, Context context) {
         this.button = button;
+        this.mainContext = context;
         color = ((ColorDrawable)button.getBackground()).getColor();
         setCurrentPitch(basePitch);
 
@@ -57,8 +59,6 @@ public class Key{
                 }
                 return false;
             }
-
-
         });
     }
 
@@ -66,6 +66,10 @@ public class Key{
      * Changes the color of the key and plays the sound
      */
     private void startup(){
+        if(player == null){
+            player = MediaPlayer.create(mainContext, soundID);
+            player.setPlaybackParams(params);
+        }
         button.setBackgroundColor(Color.argb(255, 0, 176, 255));
         player.seekTo(0);
         player.start();
@@ -80,25 +84,29 @@ public class Key{
 
     /**
      * Replaces media player and deletes it
-     * @param player The new media player
+     * @param soundID The id of the sound to be played by this key
      */
-    public void setPlayer(MediaPlayer player) {
-        if(this.player != null){
-            this.player.release();
-        }
-        this.player = player;
-        player.setPlaybackParams(params);
+    void setSound(int soundID) {
+        this.soundID = soundID;
     }
 
-    public float getPitch(){
-        return params.getPitch();
+    /**
+     * Returns either the media player used by the key or null if one has not been created yet
+     * @return Either the media player used by the key or null
+     */
+    MediaPlayer getPlayer(){
+        if(player != null){
+            return player;
+        }else{
+            return null;
+        }
     }
 
     /**
      * Changes the current pitch of the key if the media player is not null
      * @param newPitch The new pitch
      */
-    public void setCurrentPitch(float newPitch){
+    void setCurrentPitch(float newPitch){
         currentPitch = newPitch * basePitch;
         params.setPitch(currentPitch);
         if(player != null){
@@ -106,15 +114,15 @@ public class Key{
         }
     }
 
-    public float getBasePitch(){
+    float getBasePitch(){
         return basePitch;
     }
 
     /**
      * Sets the base pitch and changes the current pitch if the media player is not null
-     * @param basePitch
+     * @param basePitch The starting pitch and pitch multiplier for the key
      */
-    public void setBasePitch(float basePitch){
+    void setBasePitch(float basePitch){
         this.basePitch = basePitch;
         currentPitch = basePitch;
         params.setPitch(currentPitch);
