@@ -14,8 +14,10 @@ import android.widget.ImageView;
 public class MenuActivity extends AppCompatActivity {
 
     Intent keyboardIntent;
+    Intent helpIntent;
     Button nextActivityButton;
     Button chooseInstrumentButton;
+    Button helpButton;
     ImageView instrumentImageView;
     int currentImage = 0;  //Determines the image when selecting an instrument on the menu as well as the type of instrument created in the main activity
 
@@ -27,10 +29,12 @@ public class MenuActivity extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE); //Locks main menu into landscape orientation
         keyboardIntent = new Intent(this, MainActivity.class); //Intent allows data to be shared between activities
+        helpIntent = new Intent (this, HelpScreenActivity.class);
 
         nextActivityButton = findViewById(R.id.nextActivityButton); //Finds the button and gives it a name
         chooseInstrumentButton = findViewById(R.id.ChooseInstrument);
         instrumentImageView = findViewById(R.id.instrumentView);
+        helpButton = findViewById(R.id.helpButton);
 
         final int[] drawables = new int[] { R.drawable.piano}; // Put images here
 
@@ -56,7 +60,16 @@ public class MenuActivity extends AppCompatActivity {
                 currentImage++; // add to index
             }
         });
+        //Button click listener -- gets called when the help button is pressed
+        helpButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getHelp();
+            }
+        });
     }
+
+    public void getHelp(){startActivity(helpIntent);}
 
     public void nextActivity(){
         startActivity(keyboardIntent);
