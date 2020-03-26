@@ -12,7 +12,7 @@ import java.util.ArrayList;
 class Instrument {
     private ArrayList<Key> keyList = new ArrayList<>(); //List of all the keys in the instrument
     private ArrayList<Integer> soundList = new ArrayList<>(); //List of media players used by the keys
-    private int type; //The value that determines the type of instrument created
+    private int type = -1; //The value that determines the type of instrument created
 
 
     /**

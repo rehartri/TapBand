@@ -22,9 +22,10 @@ class Key{
     private Rect rect = new Rect(); //Helps track movement within the bounds of the key
     private boolean pressed = false; //Helps with touch events
     private int color; //Initial color of the key
+    private int soundID;  //The location of the sound file used by the key
     private float currentPitch; //The current pitch of the key
     private float basePitch = 1; //The starting pitch and multiplier for setting the pitch
-    private int soundID;  //The location of the sound file used by the key
+
 
     /**
      * Creates a new key, sets the pitch, and handles the touch events

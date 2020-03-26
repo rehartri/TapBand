@@ -44,20 +44,18 @@ public class MenuActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 keyboardIntent.putExtra("type", currentImage); //Passes the value that determines the type of instrument to create to the main activity
-                if(currentImage > 0) {
-                    nextActivity();
-                }
+                nextActivity();
             }
         });
         //Button click listener -- gets called when choose instrument button is pressed
         chooseInstrumentButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                currentImage++; // add to index
                 if (currentImage > drawables.length-1){ // looks for the index being too large
                     currentImage = 0; //index was too large, reset
                 }
                 instrumentImageView.setImageResource(drawables[currentImage]); //Set new image
-                currentImage++; // add to index
             }
         });
         //Button click listener -- gets called when the help button is pressed
