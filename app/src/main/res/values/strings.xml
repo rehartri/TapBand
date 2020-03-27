@@ -6,4 +6,17 @@
     <string name="Save">"Save Recording"</string>
     <string name="Back">"Back"</string>
     <string name="Help_Menu">"Help Menu"</string>
+
+
+
+    <!-- Resource for the help screen text element. -->
+    <string name="Help_Text">" 1. Menu Button: Return to main menu.\n"
+                                "2. Octave Selector: Slide left for lower pitch notes, right for higher ones.\n"
+                                "3. Record Button: Press the button to start recording, it will turn red. Press again to stop.\n"
+                                "4. Saved Recordings: Shows previous recordings. Press one to load it for playback\n"
+                                "5. Restart Button: Restart the playback of the selected recording.\n"
+                                "6. Play Button: Play the selected recording.\n"
+                                "7. Pause Button: Stop the current playback.\n"
+                                "8. Help Button: Use this button to return to this screen.\n"
+                                "9. Keyboard Keys: Press the keys to make sounds."</string>
 </resources>
