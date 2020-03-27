@@ -1,36 +1,14 @@
 package com.example.tapband;
 
-import android.media.MediaPlayer;
-import android.media.MediaRecorder;
-
-import android.os.Environment;
-
-import android.widget.Toast;
-
-import java.io.IOException;
-import java.util.Random;
-
-import static android.Manifest.permission.RECORD_AUDIO;
-import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
-
-import android.content.pm.PackageManager;
-
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.SeekBar;
-
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
@@ -39,18 +17,6 @@ public class MainActivity extends AppCompatActivity {
     Button recordButton;
     Button helpButton; //Button to reach the help menu
     Button menuButton; //Button to go back to main menu.
-    Button playButton;
-    Button pauseButton;
-    Button restartButton;
-
-    String saveAudio = null;
-
-    public static final int RequestPermissionCode = 1;
-
-    MediaRecorder mediaRecorder;
-    MediaPlayer mediaPlayer;
-
-    @RequiresApi(api = Build.VERSION_CODES.M)
     @SuppressLint("SourceLockedOrientationActivity")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,21 +25,28 @@ public class MainActivity extends AppCompatActivity {
         menuIntent = new Intent(this, MenuActivity.class);
 
         menuButton = findViewById(R.id.Menu);
-
-        //Buttons to work the record aspect
         recordButton = findViewById(R.id.Record);
-        playButton = findViewById(R.id.Play);
-        pauseButton = findViewById(R.id.Pause);
-        restartButton = findViewById(R.id.StartOver);
-
-        playButton.setEnabled(true);
-        pauseButton.setEnabled(false);
-        restartButton.setEnabled(false);
 
         menuButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 nextScreen();
+            }
+        });
+
+
+
+        recordButton.setOnClickListener(new View.OnClickListener(){
+            int color = 0;
+            @Override
+            public void onClick(View v){
+                if (color == 0) {
+                    recordButton.setBackgroundResource(R.drawable.round_button_green);
+                    color = 1;
+                }else{
+                    recordButton.setBackgroundResource(R.drawable.round_button_red);
+                    color = 0;
+                }
             }
         });
 
@@ -111,55 +84,6 @@ public class MainActivity extends AppCompatActivity {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE); //Locks piano screen into landscape orientation.
 
         setInstrument(getIntent().getIntExtra("type", 0)); //Creates instrument based on selection in menu
-
-        recordButton.setOnClickListener(new View.OnClickListener(){//Sets up usability of record button
-            int color = 0;
-            @Override
-            public void onClick(View v){
-                if (color == 0) {
-                    recordButton.setBackgroundResource(R.drawable.round_button_green);
-
-                    if(checkPermission()) {
-                        saveAudio = Environment.getExternalStorageDirectory().getAbsolutePath() + "/" + "Recording" + "AudioRecording.3gp";
-
-                        createMediaRecorder();
-
-                        try{
-                            mediaRecorder.prepare();
-                            mediaRecorder.start();
-                        }catch(IllegalStateException e){
-                            e.printStackTrace();
-                        }catch(IOException e){
-                            e.printStackTrace();
-                        }
-                    } else {
-                        requestPermission();
-                    }
-                    color = 1;
-                }else{
-                    recordButton.setBackgroundResource(R.drawable.round_button_red);
-                    mediaRecorder.stop();
-                    color = 0;
-                }
-            }
-        });
-
-        //Makes the play button work
-        playButton.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) throws IllegalArgumentException, SecurityException, IllegalStateException{
-                mediaPlayer = new MediaPlayer();
-                try{
-                    mediaPlayer.setDataSource(saveAudio);
-                    mediaPlayer.prepare();
-                }catch(IOException e){
-                    e.printStackTrace();
-                }
-
-                mediaPlayer.start();
-            }
-        });
-
     }
 
     public void nextScreen(){
@@ -170,7 +94,7 @@ public class MainActivity extends AppCompatActivity {
      * Creates a new instrument by passing it the keyboard buttons and pitch seek bar form the main activity
      * @return The new instrument
      */
-    @RequiresApi(api = Build.VERSION_CODES.M)
+
     public Instrument createInstrument(){
         ArrayList<Button> buttonList = new ArrayList<>();
         buttonList.add((Button)findViewById(R.id.CLo));
@@ -194,7 +118,6 @@ public class MainActivity extends AppCompatActivity {
      * Sets the sounds used for the keyboard and initializes instrument
      * @param type the value that determines what type of sounds will be used by the instrument class
      */
-    @RequiresApi(api = Build.VERSION_CODES.M)
     public void setInstrument(int type){
         if(instrument != null){
             instrument.clear();
@@ -210,38 +133,4 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(MainActivity.this, HelpScreenActivity.class);
         startActivity(intent);
     }
-
-    //Checks to make sure that recording is allowed on the device
-    public boolean checkPermission() {
-        int result = ContextCompat.checkSelfPermission(getApplicationContext(), WRITE_EXTERNAL_STORAGE);
-        int result1 = ContextCompat.checkSelfPermission(getApplicationContext(), RECORD_AUDIO);
-        return result == PackageManager.PERMISSION_GRANTED && result1 == PackageManager.PERMISSION_GRANTED;
-    }
-
-    //Creates the media recorder
-    public void createMediaRecorder(){
-        mediaRecorder = new MediaRecorder();
-        mediaRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
-        mediaRecorder.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP);
-        mediaRecorder.setAudioEncoder(MediaRecorder.OutputFormat.AMR_NB);
-        mediaRecorder.setOutputFile(saveAudio);
-    }
-
-    //Goes to get permission
-    private void requestPermission(){
-        ActivityCompat.requestPermissions(MainActivity.this, new String[]{WRITE_EXTERNAL_STORAGE, RECORD_AUDIO}, RequestPermissionCode);
-    }
-
-    public void onRequestPermissionResult(int requestCode, String permissions[], int[] grantResults){
-        switch (requestCode){
-            case RequestPermissionCode:
-                if (grantResults.length > 0){
-                    boolean StoragePermission = grantResults[0] == PackageManager.PERMISSION_GRANTED;
-                    boolean RecordPermission = grantResults[1] == PackageManager.PERMISSION_GRANTED;
-
-                    break;
-                }
-        }
-    }
-
 }

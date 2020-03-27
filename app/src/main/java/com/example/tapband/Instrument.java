@@ -1,37 +1,33 @@
 package com.example.tapband;
 
 import android.content.Context;
-import android.os.Build;
 import android.widget.Button;
 import android.widget.SeekBar;
-
-import androidx.annotation.RequiresApi;
-
 import java.util.ArrayList;
+import java.util.Iterator;
 
 class Instrument {
     private ArrayList<Key> keyList = new ArrayList<>(); //List of all the keys in the instrument
-    private ArrayList<Integer> soundList = new ArrayList<>(); //List of media players used by the keys
+    private ArrayList<Integer> soundIDs = new ArrayList<>(); //List of id numbers for the sounds in the instrument
     private int type = -1; //The value that determines the type of instrument created
 
 
     /**
-     * Creates an instrument and handles the slider events
+     * Creates an instrument, handles the slider events, and passes the context from the main activity into each of the buttons
      * @param buttonList List of buttons referenced by the keys
      * @param seekBar Seek bar referenced by the keys
+     * @param context The context of the main activity which gets passed into each key
      */
-    @RequiresApi(api = Build.VERSION_CODES.M)
     Instrument(ArrayList<Button> buttonList, SeekBar seekBar, Context context){
         for(Button button : buttonList){  //Creates each key and passes it it's own button to use
             keyList.add(new Key(button, context));
         }
-        keyList.get(keyList.size() - 1).setBasePitch(keyList.get(keyList.size() - 1).getBasePitch() * 2);  //Doubles the pitch of the high c button's sound
 
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 for(Key key : keyList){
-                    key.setCurrentPitch((float)Math.pow(2, progress - 1));  //Sets the pitch of the instrument when the seek bar progress is changed
+                    key.setOctave(progress);
                 }
             }
 
@@ -48,22 +44,18 @@ class Instrument {
     }
 
     /**
-     * Frees up the space taken up by the media players when they are no longer needed
+     * Frees up the space taken up by the keys' SoundPools when they are no longer needed
      */
-    @RequiresApi(api = Build.VERSION_CODES.M)
     void clear(){
         for(Key key: keyList){
-            if(key.getPlayer() != null) {
-                key.getPlayer().release();
-            }
+            key.clear();
         }
     }
 
     /**
-     * Changes the type of sounds the instrument makes based on the value of type parameter
+     * Changes the type of sounds the instrument makes based on the value of the type parameter
      * @param type Integer value that determines instrument type
      */
-    @RequiresApi(api = Build.VERSION_CODES.M)
     void setType(int type){
         if(this.type == type){
             return;
@@ -74,8 +66,15 @@ class Instrument {
                 pianoBuild();
                 break;
         }
-        for(int i = 0; i < keyList.size(); i++){
-            keyList.get(i).setSound(soundList.get(i));
+        Iterator it = soundIDs.iterator();
+        for(int i = 0; it.hasNext(); i++){
+            if(i >= keyList.size() - 1){
+                i = 0;
+            }
+            keyList.get(i).addSoundID((Integer) it.next());
+        }
+        for(int i = 12; i < soundIDs.size(); i += 12){
+            keyList.get(keyList.size() - 1).addSoundID(soundIDs.get(i));
         }
     }
 
@@ -83,21 +82,49 @@ class Instrument {
      * Changes the sounds in the sound list to piano notes
      */
     private void pianoBuild(){
-        if(soundList != null){
-            soundList.clear();
+        if(soundIDs != null){
+            soundIDs.clear();
         }
-        soundList.add(R.raw.piano_c);
-        soundList.add(R.raw.piano_csharp);
-        soundList.add(R.raw.piano_d);
-        soundList.add(R.raw.piano_dsharp);
-        soundList.add(R.raw.piano_e);
-        soundList.add(R.raw.piano_f);
-        soundList.add(R.raw.piano_fsharp);
-        soundList.add(R.raw.piano_g);
-        soundList.add(R.raw.piano_gsharp);
-        soundList.add(R.raw.piano_a);
-        soundList.add(R.raw.piano_asharp);
-        soundList.add(R.raw.piano_b);
-        soundList.add(R.raw.piano_c);
+        //Octave 1
+        soundIDs.add(R.raw.piano_c3);
+        soundIDs.add(R.raw.piano_csharp3);
+        soundIDs.add(R.raw.piano_d3);
+        soundIDs.add(R.raw.piano_dsharp3);
+        soundIDs.add(R.raw.piano_e3);
+        soundIDs.add(R.raw.piano_f3);
+        soundIDs.add(R.raw.piano_fsharp3);
+        soundIDs.add(R.raw.piano_g3);
+        soundIDs.add(R.raw.piano_gsharp3);
+        soundIDs.add(R.raw.piano_a3);
+        soundIDs.add(R.raw.piano_asharp3);
+        soundIDs.add(R.raw.piano_b3);
+        //Octave 2
+        soundIDs.add(R.raw.piano_c4);
+        soundIDs.add(R.raw.piano_csharp4);
+        soundIDs.add(R.raw.piano_d4);
+        soundIDs.add(R.raw.piano_dsharp4);
+        soundIDs.add(R.raw.piano_e4);
+        soundIDs.add(R.raw.piano_f4);
+        soundIDs.add(R.raw.piano_fsharp4);
+        soundIDs.add(R.raw.piano_g4);
+        soundIDs.add(R.raw.piano_gsharp4);
+        soundIDs.add(R.raw.piano_a4);
+        soundIDs.add(R.raw.piano_asharp4);
+        soundIDs.add(R.raw.piano_b4);
+        //Octave 3
+        soundIDs.add(R.raw.piano_c5);
+        soundIDs.add(R.raw.piano_csharp5);
+        soundIDs.add(R.raw.piano_d5);
+        soundIDs.add(R.raw.piano_dsharp5);
+        soundIDs.add(R.raw.piano_e5);
+        soundIDs.add(R.raw.piano_f5);
+        soundIDs.add(R.raw.piano_fsharp5);
+        soundIDs.add(R.raw.piano_g5);
+        soundIDs.add(R.raw.piano_gsharp5);
+        soundIDs.add(R.raw.piano_a5);
+        soundIDs.add(R.raw.piano_asharp5);
+        soundIDs.add(R.raw.piano_b5);
+        //Octave 4
+        soundIDs.add(R.raw.piano_c6);
     }
 }
