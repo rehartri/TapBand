@@ -17,6 +17,8 @@ public class MainActivity extends AppCompatActivity {
     Button recordButton;
     Button helpButton; //Button to reach the help menu
     Button menuButton; //Button to go back to main menu.
+    ArrayList<KeyType> buttonList;
+
     @SuppressLint("SourceLockedOrientationActivity")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,22 +96,21 @@ public class MainActivity extends AppCompatActivity {
      * Creates a new instrument by passing it the keyboard buttons and pitch seek bar form the main activity
      * @return The new instrument
      */
-
     public Instrument createInstrument(){
-        ArrayList<Button> buttonList = new ArrayList<>();
-        buttonList.add((Button)findViewById(R.id.CLo));
-        buttonList.add((Button)findViewById(R.id.CSharp));
-        buttonList.add((Button)findViewById(R.id.D));
-        buttonList.add((Button)findViewById(R.id.DSharp));
-        buttonList.add((Button)findViewById(R.id.E));
-        buttonList.add((Button)findViewById(R.id.F));
-        buttonList.add((Button)findViewById(R.id.FSharp));
-        buttonList.add((Button)findViewById(R.id.G));
-        buttonList.add((Button)findViewById(R.id.GSharp));
-        buttonList.add((Button)findViewById(R.id.A));
-        buttonList.add((Button)findViewById(R.id.ASharp));
-        buttonList.add((Button)findViewById(R.id.B));
-        buttonList.add((Button)findViewById(R.id.CHi));
+        buttonList = new ArrayList<>();
+        buttonList.add(new KeyType((Button)findViewById(R.id.CLo), false));
+        buttonList.add(new KeyType((Button)findViewById(R.id.CSharp), true));
+        buttonList.add(new KeyType((Button)findViewById(R.id.D), false));
+        buttonList.add(new KeyType((Button)findViewById(R.id.DSharp), true));
+        buttonList.add(new KeyType((Button)findViewById(R.id.E), false));
+        buttonList.add(new KeyType((Button)findViewById(R.id.F), false));
+        buttonList.add(new KeyType((Button)findViewById(R.id.FSharp), true));
+        buttonList.add(new KeyType((Button)findViewById(R.id.G), false));
+        buttonList.add(new KeyType((Button)findViewById(R.id.GSharp), true));
+        buttonList.add(new KeyType((Button)findViewById(R.id.A), false));
+        buttonList.add(new KeyType((Button)findViewById(R.id.ASharp), true));
+        buttonList.add(new KeyType((Button)findViewById(R.id.B), false));
+        buttonList.add(new KeyType((Button)findViewById(R.id.CHi), false));
         SeekBar seekBar = findViewById(R.id.seekBar);
         return new Instrument(buttonList, seekBar, getApplicationContext());
     }

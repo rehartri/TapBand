@@ -1,7 +1,8 @@
 package com.example.tapband;
 
 import android.content.Context;
-import android.widget.Button;
+import android.view.MotionEvent;
+import android.view.View;
 import android.widget.SeekBar;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -18,9 +19,72 @@ class Instrument {
      * @param seekBar Seek bar referenced by the keys
      * @param context The context of the main activity which gets passed into each key
      */
-    Instrument(ArrayList<Button> buttonList, SeekBar seekBar, Context context){
-        for(Button button : buttonList){  //Creates each key and passes it it's own button to use
-            keyList.add(new Key(button, context));
+    Instrument(final ArrayList<KeyType> buttonList, SeekBar seekBar, Context context){
+        for(int i = 0; i < buttonList.size(); i++){  //Creates each key and passes it it's own button to use
+            final Key key = new Key(buttonList.get(i).getButton(), buttonList.get(i).isSharp(), i, context);
+            keyList.add(key);
+            buttonList.get(i).getButton().setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                key.getButton().getDrawingRect(key.getRect());
+                if ((event.getAction() & MotionEvent.ACTION_MASK) == MotionEvent.ACTION_DOWN) {
+                    key.start();
+                }
+                if ((event.getAction() & MotionEvent.ACTION_MASK) == MotionEvent.ACTION_MOVE) {
+                    if (event.getX() > key.getButton().getLeft() && event.getX() < key.getButton().getRight() && event.getY() < key.getButton().getBottom() && event.getY() > key.getButton().getTop()){
+//                        key.getRect().contains((int) event.getX(), (int) event.getY())
+                        if (!key.isPressed()) {
+                            key.start();
+                        }
+                    } else {
+                        if(key.isSharp()){
+                            if(event.getX() < key.getButton().getLeft()){
+                                return dispatchLeft(event);
+                            }else if(event.getX() > key.getButton().getRight()){
+                                return dispatchRight(event);
+                            }else if(event.getY() > key.getButton().getBottom()){
+                                if(event.getX() < (((key.getButton().getLeft() * 1.0) + (key.getButton().getRight() * 1.0)) / 2)){
+                                    dispatchLeft(event);
+                                }else{
+                                    dispatchRight(event);
+                                }
+                            }else{
+                                return false;
+                            }
+                        }else{
+                            if(event.getX() < key.getButton().getLeft()){
+                                return dispatchLeft(event);
+                            }else if(event.getX() > key.getButton().getRight()){
+                                return dispatchRight(event);
+                            }else{
+                                return false;
+                            }
+                        }
+                    }
+                }
+                if ((event.getAction() & MotionEvent.ACTION_MASK) == MotionEvent.ACTION_UP) {
+                    key.end();
+                }
+                return key.isPressed();
+
+            }
+            boolean dispatchLeft(MotionEvent event){
+                key.end();
+                if(key.getIndex() >= keyList.size() - 1){
+                    return false;
+                }else{
+                    return keyList.get(key.getIndex() + 1).getButton().dispatchTouchEvent(event);
+                }
+            }
+            boolean dispatchRight(MotionEvent event){
+                key.end();
+                if(key.getIndex() <= 0){
+                    return false;
+                }else{
+                    return keyList.get(key.getIndex() - 1).getButton().dispatchTouchEvent(event);
+                }
+            }
+        });
         }
 
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
@@ -126,5 +190,10 @@ class Instrument {
         soundIDs.add(R.raw.piano_b5);
         //Octave 4
         soundIDs.add(R.raw.piano_c6);
+    }
+
+
+    public ArrayList<Key> getKeyList(){
+        return keyList;
     }
 }

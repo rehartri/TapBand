@@ -20,18 +20,21 @@ class Key{
     private ArrayList<Integer> sounds = new ArrayList<>();  //List of sounds loaded by the SoundPool
     private Button button; //Button the key is associated with
     private Rect rect = new Rect(); //Helps track movement within the bounds of the key
-    private boolean pressed = false; //Helps with touch events
     private int color; //Initial color of the key
     private int octave = 1;  //Determines what sounds are played by the SoundPool
-
+    private int index; //Keeps track of which key in the piano this is
+    private boolean pressed = false; //Helps with touch events
+    private boolean sharp; //Helps with touch events by determining weather or not to switch between keys on overlap
 
     /**
      * Creates a key, initializes the SoundPool, and handles the touch events for the button
      * @param button The button that activates this key
      * @param context The context form the main activity
      */
-    Key(final Button button, Context context) {
+    Key(Button button, boolean sharp, int index, Context context) {
         this.button = button;
+        this.sharp = sharp;
+        this.index = index;
         this.mainContext = context;
         color = ((ColorDrawable)button.getBackground()).getColor();
 
@@ -49,45 +52,53 @@ class Key{
             pool = new SoundPool(3, AudioManager.STREAM_MUSIC, 0);
         }
 
-        button.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                button.getDrawingRect(rect);
-                if ((event.getAction() & MotionEvent.ACTION_MASK) == MotionEvent.ACTION_DOWN) {
-                    pressed = true;
-                    startup();
-                }
-                if (rect.contains((int) event.getX(), (int) event.getY())){
-                    if (!pressed) {
-                        pressed = true;
-                        startup();
-                    }
-                } else {
-                    pressed = false;
-                    end();
-                }
-                if ((event.getAction() & MotionEvent.ACTION_MASK) == MotionEvent.ACTION_UP) {
-                    pressed = false;
-                    end();
-                }
-                return false;
-            }
-        });
+//        button.setOnTouchListener(new View.OnTouchListener() {
+//            @Override
+//            public boolean onTouch(View v, MotionEvent event) {
+//                button.getDrawingRect(rect);
+//                if ((event.getAction() & MotionEvent.ACTION_MASK) == MotionEvent.ACTION_DOWN) {
+//                    pressed = true;
+//                    start();
+//                }
+//                if ((event.getAction() & MotionEvent.ACTION_MASK) == MotionEvent.ACTION_MOVE) {
+//                    if (rect.contains((int) event.getX(), (int) event.getY())){
+//                        if (!pressed) {
+//                            pressed = true;
+//                            start();
+//                        }
+//                    } else {
+//                        pressed = false;
+//                        end();
+//                    }
+//                }
+//
+//                if ((event.getAction() & MotionEvent.ACTION_MASK) == MotionEvent.ACTION_UP) {
+//                    pressed = false;
+//                    end();
+//                }
+//                return pressed;
+//
+//            }
+//        });
     }
 
     /**
      * Changes the color of the key and plays sounds
      */
-    private void startup(){
-        pool.play(sounds.get(octave), 1, 1, 0, 0, 1);
-        button.setBackgroundColor(Color.argb(255, 0, 176, 255));
+    public void start(){
+        if (!pressed) {
+            pressed = true;
+            pool.play(sounds.get(octave), 1, 1, 0, 0, 1);
+            button.setBackgroundColor(Color.argb(255, 0, 176, 255));
+        }
     }
 
     /**
      * Changes the color of the key back to the original color
      */
-    private void end(){
+    public void end(){
         button.setBackgroundColor(color);
+        pressed = false;
     }
 
 
@@ -118,4 +129,27 @@ class Key{
         this.octave = octave;
     }
 
+    public Button getButton() {
+        return button;
+    }
+
+    public Rect getRect(){
+        return rect;
+    }
+
+    public void setPressed(boolean pressed){
+        this.pressed = pressed;
+    }
+
+    public int getIndex(){
+        return index;
+    }
+
+    public boolean isPressed(){
+        return pressed;
+    }
+
+    public boolean isSharp(){
+        return sharp;
+    }
 }
