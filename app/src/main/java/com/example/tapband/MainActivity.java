@@ -164,7 +164,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        //Makes the pause button work?
+        //Makes the pause button work -- no
         pauseButton.setOnClickListener(new View.OnClickListener(){
             @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
