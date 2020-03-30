@@ -127,6 +127,8 @@ public class MainActivity extends AppCompatActivity {
                         try{
                             mediaRecorder.prepare();
                             mediaRecorder.start();
+                            //This is to test on Kofi's device
+                            Toast.makeText(MainActivity.this, "Recording started", Toast.LENGTH_LONG).show();
                         }catch(IllegalStateException e){
                             e.printStackTrace();
                         }catch(IOException e){
@@ -135,6 +137,7 @@ public class MainActivity extends AppCompatActivity {
                     } else {
                         requestPermission();
                     }
+
                     color = 1;
                 }else{
                     recordButton.setBackgroundResource(R.drawable.round_button_red);
