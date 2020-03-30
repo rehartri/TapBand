@@ -8,21 +8,21 @@
 
     <Button
         android:id="@+id/CLo"
-        android:layout_width="84dp"
-        android:layout_height="308dp"
+        android:layout_width="84sp"
+        android:layout_height="308sp"
         android:background="@color/ButtonColor"
-        android:text="@string/none"
         android:stateListAnimator="@null"
+        android:text="@string/none"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/D"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/CSharp"
-        android:layout_width="45dp"
-        android:layout_height="154dp"
-        android:layout_marginStart="63dp"
-        android:layout_marginLeft="63dp"
+        android:layout_width="45sp"
+        android:layout_height="154sp"
+        android:layout_marginStart="63sp"
+        android:layout_marginLeft="63sp"
         android:background="@color/ButtonColor2"
         android:text="@string/none"
         app:layout_constraintStart_toStartOf="parent"
@@ -30,10 +30,10 @@
 
     <Button
         android:id="@+id/D"
-        android:layout_width="84dp"
-        android:layout_height="308dp"
-        android:layout_marginStart="1dp"
-        android:layout_marginLeft="1dp"
+        android:layout_width="84sp"
+        android:layout_height="308sp"
+        android:layout_marginStart="1sp"
+        android:layout_marginLeft="1sp"
         android:background="@color/ButtonColor"
         android:text="@string/none"
         android:stateListAnimator="@null"
@@ -43,10 +43,10 @@
 
     <Button
         android:id="@+id/DSharp"
-        android:layout_width="45dp"
-        android:layout_height="154dp"
-        android:layout_marginStart="41dp"
-        android:layout_marginLeft="41dp"
+        android:layout_width="45sp"
+        android:layout_height="154sp"
+        android:layout_marginStart="41sp"
+        android:layout_marginLeft="41sp"
         android:background="@color/ButtonColor2"
         android:text="@string/none"
         app:layout_constraintStart_toEndOf="@id/CSharp"
@@ -54,10 +54,10 @@
 
     <Button
         android:id="@+id/E"
-        android:layout_width="84dp"
-        android:layout_height="308dp"
-        android:layout_marginStart="1dp"
-        android:layout_marginLeft="1dp"
+        android:layout_width="84sp"
+        android:layout_height="308sp"
+        android:layout_marginStart="1sp"
+        android:layout_marginLeft="1sp"
         android:background="@color/ButtonColor"
         android:text="@string/none"
         android:stateListAnimator="@null"
@@ -67,10 +67,10 @@
 
     <Button
         android:id="@+id/F"
-        android:layout_width="84dp"
-        android:layout_height="308dp"
-        android:layout_marginStart="1dp"
-        android:layout_marginLeft="1dp"
+        android:layout_width="84sp"
+        android:layout_height="308sp"
+        android:layout_marginStart="1sp"
+        android:layout_marginLeft="1sp"
         android:background="@color/ButtonColor"
         android:text="@string/none"
         android:stateListAnimator="@null"
@@ -80,10 +80,10 @@
 
     <Button
         android:id="@+id/FSharp"
-        android:layout_width="45dp"
-        android:layout_height="154dp"
-        android:layout_marginStart="127dp"
-        android:layout_marginLeft="127dp"
+        android:layout_width="45sp"
+        android:layout_height="154sp"
+        android:layout_marginStart="127sp"
+        android:layout_marginLeft="127sp"
         android:background="@color/ButtonColor2"
         android:text="@string/none"
         app:layout_constraintStart_toEndOf="@+id/DSharp"
@@ -91,10 +91,10 @@
 
     <Button
         android:id="@+id/G"
-        android:layout_width="84dp"
-        android:layout_height="308dp"
-        android:layout_marginStart="1dp"
-        android:layout_marginLeft="1dp"
+        android:layout_width="84sp"
+        android:layout_height="308sp"
+        android:layout_marginStart="1sp"
+        android:layout_marginLeft="1sp"
         android:background="@color/ButtonColor"
         android:text="@string/none"
         android:stateListAnimator="@null"
@@ -104,10 +104,10 @@
 
     <Button
         android:id="@+id/GSharp"
-        android:layout_width="45dp"
-        android:layout_height="154dp"
-        android:layout_marginStart="41dp"
-        android:layout_marginLeft="41dp"
+        android:layout_width="45sp"
+        android:layout_height="154sp"
+        android:layout_marginStart="41sp"
+        android:layout_marginLeft="41sp"
         android:background="@color/ButtonColor2"
         android:text="@string/none"
         app:layout_constraintStart_toEndOf="@+id/FSharp"
@@ -115,10 +115,10 @@
 
     <Button
         android:id="@+id/A"
-        android:layout_width="84dp"
-        android:layout_height="308dp"
-        android:layout_marginStart="1dp"
-        android:layout_marginLeft="1dp"
+        android:layout_width="84sp"
+        android:layout_height="308sp"
+        android:layout_marginStart="1sp"
+        android:layout_marginLeft="1sp"
         android:background="@color/ButtonColor"
         android:text="@string/none"
         android:stateListAnimator="@null"
@@ -128,10 +128,10 @@
 
     <Button
         android:id="@+id/ASharp"
-        android:layout_width="45dp"
-        android:layout_height="154dp"
-        android:layout_marginStart="41dp"
-        android:layout_marginLeft="41dp"
+        android:layout_width="45sp"
+        android:layout_height="154sp"
+        android:layout_marginStart="41sp"
+        android:layout_marginLeft="41sp"
         android:background="@color/ButtonColor2"
         android:text="@string/none"
         app:layout_constraintStart_toEndOf="@+id/GSharp"
@@ -139,10 +139,10 @@
 
     <Button
         android:id="@+id/B"
-        android:layout_width="84dp"
-        android:layout_height="308dp"
-        android:layout_marginStart="1dp"
-        android:layout_marginLeft="1dp"
+        android:layout_width="84sp"
+        android:layout_height="308sp"
+        android:layout_marginStart="1sp"
+        android:layout_marginLeft="1sp"
         android:background="@color/ButtonColor"
         android:text="@string/none"
         android:stateListAnimator="@null"
@@ -152,10 +152,10 @@
 
     <Button
         android:id="@+id/CHi"
-        android:layout_width="84dp"
-        android:layout_height="308dp"
-        android:layout_marginStart="1dp"
-        android:layout_marginLeft="1dp"
+        android:layout_width="84sp"
+        android:layout_height="308sp"
+        android:layout_marginStart="1sp"
+        android:layout_marginLeft="1sp"
         android:background="@color/ButtonColor"
         android:text="@string/none"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -164,8 +164,8 @@
 
     <Button
         android:id="@+id/Menu"
-        android:layout_width="75dp"
-        android:layout_height="60dp"
+        android:layout_width="75sp"
+        android:layout_height="60sp"
         android:background="@color/MenuButtons"
         android:text="@string/Menu"
         app:layout_constraintStart_toStartOf="parent"
@@ -173,11 +173,11 @@
 
     <Button
         android:id="@+id/Record"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginEnd="15dp"
-        android:layout_marginRight="15dp"
+        android:layout_width="30sp"
+        android:layout_height="30sp"
+        android:layout_marginTop="15sp"
+        android:layout_marginEnd="15sp"
+        android:layout_marginRight="15sp"
         android:background="@drawable/round_button_red"
         android:text="@string/none"
         app:layout_constraintEnd_toStartOf="@+id/SaveRecording"
@@ -185,10 +185,10 @@
 
     <Button
         android:id="@+id/SaveRecording"
-        android:layout_width="100dp"
-        android:layout_height="60dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginRight="10dp"
+        android:layout_width="100sp"
+        android:layout_height="60sp"
+        android:layout_marginEnd="10sp"
+        android:layout_marginRight="10sp"
         android:background="@color/MenuButtons"
         android:orientation="horizontal"
         android:text="@string/Save"
@@ -197,8 +197,8 @@
 
     <Button
         android:id="@+id/StartOver"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:layout_width="60sp"
+        android:layout_height="60sp"
         android:background="@android:drawable/ic_media_previous"
         android:backgroundTint="@color/ButtonColor2"
         android:text="@string/none"
@@ -207,8 +207,8 @@
 
     <Button
         android:id="@+id/Play"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:layout_width="60sp"
+        android:layout_height="60sp"
         android:background="@android:drawable/ic_media_play"
         android:backgroundTint="@color/ButtonColor2"
         android:text="@string/none"
@@ -217,8 +217,8 @@
 
     <Button
         android:id="@+id/Pause"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:layout_width="60sp"
+        android:layout_height="60sp"
         android:background="@android:drawable/ic_media_pause"
         android:backgroundTint="@color/ButtonColor2"
         android:text="@string/none"
@@ -227,8 +227,8 @@
 
     <Button
         android:id="@+id/Help"
-        android:layout_width="75dp"
-        android:layout_height="60dp"
+        android:layout_width="75sp"
+        android:layout_height="60sp"
         android:background="@color/MenuButtons"
         android:text="@string/Help"
         app:layout_constraintEnd_toEndOf="parent"
@@ -236,12 +236,12 @@
 
     <SeekBar
         android:id="@+id/seekBar"
-        android:layout_width="201dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="15dp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginEnd="15dp"
-        android:layout_marginRight="15dp"
+        android:layout_width="201sp"
+        android:layout_height="60sp"
+        android:layout_marginStart="15sp"
+        android:layout_marginLeft="15sp"
+        android:layout_marginEnd="15sp"
+        android:layout_marginRight="15sp"
         android:max="2"
         android:progress="1"
         app:layout_constraintEnd_toStartOf="@+id/Record"
