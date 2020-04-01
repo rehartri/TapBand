@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
 
         playButton.setEnabled(true);
         pauseButton.setEnabled(false);
-        restartButton.setEnabled(false);
+        restartButton.setEnabled(true);
 
         menuButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -139,6 +139,7 @@ public class MainActivity extends AppCompatActivity {
                 }else{
                     recordButton.setBackgroundResource(R.drawable.round_button_red);
                     mediaRecorder.stop();
+                    Toast.makeText(MainActivity.this, "Recording stopped", Toast.LENGTH_LONG).show();
                     color = 0;
                 }
             }
@@ -146,6 +147,31 @@ public class MainActivity extends AppCompatActivity {
 
         //Makes the play button work
         playButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) throws IllegalArgumentException, SecurityException, IllegalStateException{
+                mediaPlayer = new MediaPlayer();
+                try{
+                    mediaPlayer.setDataSource(saveAudio);
+                    mediaPlayer.prepare();
+                }catch(IOException e){
+                    e.printStackTrace();
+                }
+
+                mediaPlayer.start();
+            }
+        });
+
+        //Makes the pause button work -- no
+        pauseButton.setOnClickListener(new View.OnClickListener(){
+            @RequiresApi(api = Build.VERSION_CODES.N)
+            @Override
+            public void onClick(View view){
+                mediaRecorder.pause();
+            }
+        });
+
+        //Could play double
+        restartButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) throws IllegalArgumentException, SecurityException, IllegalStateException{
                 mediaPlayer = new MediaPlayer();

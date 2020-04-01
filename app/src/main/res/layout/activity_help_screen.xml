@@ -26,28 +26,44 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="450dp"
-        android:layout_height="366dp"
+    <ScrollView
+        android:layout_width="783dp"
+        android:layout_height="297dp"
         android:layout_marginTop="40dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/help_screen_diagram" />
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="match_parent"
-        android:layout_height="356dp"
-        android:layout_marginStart="448dp"
-        android:layout_marginLeft="448dp"
-        android:layout_marginTop="0dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginRight="14dp"
-        android:text="@string/Help_Text"
-        android:textSize="14sp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginRight="1dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/HelpImage"
+                android:layout_width="match_parent"
+                android:layout_marginStart="100dp"
+                android:layout_height="366dp"
+                android:contentDescription="@string/show_help_diagram"
+                app:srcCompat="@drawable/help_screen_diagram"
+                android:layout_marginLeft="100dp" />
+
+            <TextView
+                android:id="@+id/HelpText"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:layout_marginTop="360dp"
+                android:layout_marginStart="150dp"
+                android:layout_marginEnd="5dp"
+                android:text="@string/Help_Text"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginLeft="150dp"
+                android:layout_marginRight="5dp" />
+        </RelativeLayout>
+    </ScrollView>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
