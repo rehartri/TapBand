@@ -32,6 +32,7 @@
         android:layout_marginTop="40dp"
         android:layout_marginEnd="1dp"
         android:layout_marginRight="1dp"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -42,25 +43,25 @@
 
             <ImageView
                 android:id="@+id/HelpImage"
-                android:layout_width="match_parent"
+                android:layout_width="565dp"
+                android:layout_height="360dp"
                 android:layout_marginStart="100dp"
-                android:layout_height="366dp"
+                android:layout_marginLeft="100dp"
                 android:contentDescription="@string/show_help_diagram"
-                app:srcCompat="@drawable/help_screen_diagram"
-                android:layout_marginLeft="100dp" />
+                app:srcCompat="@drawable/help_screen_diagram" />
 
             <TextView
                 android:id="@+id/HelpText"
                 android:layout_width="match_parent"
                 android:layout_height="300dp"
-                android:layout_marginTop="360dp"
-                android:layout_marginStart="150dp"
+                android:layout_marginTop="375dp"
+                android:layout_marginStart="110dp"
                 android:layout_marginEnd="5dp"
                 android:text="@string/Help_Text"
                 android:textSize="14sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                android:layout_marginLeft="150dp"
+                android:layout_marginLeft="110dp"
                 android:layout_marginRight="5dp" />
         </RelativeLayout>
     </ScrollView>

@@ -13,6 +13,7 @@
         android:background="@color/ButtonColor"
         android:stateListAnimator="@null"
         android:text="@string/none"
+        android:minHeight="0sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/D"
         app:layout_constraintStart_toStartOf="parent" />
@@ -25,6 +26,7 @@
         android:layout_marginLeft="63sp"
         android:background="@color/ButtonColor2"
         android:text="@string/none"
+        android:minHeight="0sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/D" />
 
@@ -36,6 +38,7 @@
         android:layout_marginLeft="1sp"
         android:background="@color/ButtonColor"
         android:text="@string/none"
+        android:minHeight="0sp"
         android:stateListAnimator="@null"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/E"
@@ -49,6 +52,7 @@
         android:layout_marginLeft="41sp"
         android:background="@color/ButtonColor2"
         android:text="@string/none"
+        android:minHeight="0sp"
         app:layout_constraintStart_toEndOf="@id/CSharp"
         app:layout_constraintTop_toTopOf="@+id/E" />
 
@@ -60,6 +64,7 @@
         android:layout_marginLeft="1sp"
         android:background="@color/ButtonColor"
         android:text="@string/none"
+        android:minHeight="0sp"
         android:stateListAnimator="@null"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/F"
@@ -73,6 +78,7 @@
         android:layout_marginLeft="1sp"
         android:background="@color/ButtonColor"
         android:text="@string/none"
+        android:minHeight="0sp"
         android:stateListAnimator="@null"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/G"
@@ -86,6 +92,7 @@
         android:layout_marginLeft="127sp"
         android:background="@color/ButtonColor2"
         android:text="@string/none"
+        android:minHeight="0sp"
         app:layout_constraintStart_toEndOf="@+id/DSharp"
         app:layout_constraintTop_toTopOf="@+id/G" />
 
@@ -96,8 +103,9 @@
         android:layout_marginStart="1sp"
         android:layout_marginLeft="1sp"
         android:background="@color/ButtonColor"
-        android:text="@string/none"
         android:stateListAnimator="@null"
+        android:text="@string/none"
+        android:minHeight="0sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/A"
         app:layout_constraintStart_toEndOf="@+id/F" />
@@ -110,6 +118,7 @@
         android:layout_marginLeft="41sp"
         android:background="@color/ButtonColor2"
         android:text="@string/none"
+        android:minHeight="0sp"
         app:layout_constraintStart_toEndOf="@+id/FSharp"
         app:layout_constraintTop_toTopOf="@+id/A" />
 
@@ -121,6 +130,7 @@
         android:layout_marginLeft="1sp"
         android:background="@color/ButtonColor"
         android:text="@string/none"
+        android:minHeight="0sp"
         android:stateListAnimator="@null"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/B"
@@ -134,6 +144,7 @@
         android:layout_marginLeft="41sp"
         android:background="@color/ButtonColor2"
         android:text="@string/none"
+        android:minHeight="0sp"
         app:layout_constraintStart_toEndOf="@+id/GSharp"
         app:layout_constraintTop_toTopOf="@+id/B" />
 
@@ -145,6 +156,7 @@
         android:layout_marginLeft="1sp"
         android:background="@color/ButtonColor"
         android:text="@string/none"
+        android:minHeight="0sp"
         android:stateListAnimator="@null"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/CHi"
@@ -158,6 +170,7 @@
         android:layout_marginLeft="1sp"
         android:background="@color/ButtonColor"
         android:text="@string/none"
+        android:minHeight="0sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/B" />
@@ -166,9 +179,10 @@
         android:id="@+id/Menu"
         android:layout_width="75sp"
         android:layout_height="60sp"
-        android:layout_marginBottom="43sp"
+        android:layout_marginBottom="5dp"
         android:background="@color/MenuButtons"
         android:text="@string/Menu"
+        android:minHeight="0sp"
         app:layout_constraintBottom_toTopOf="@+id/CLo"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -178,26 +192,13 @@
         android:layout_width="30sp"
         android:layout_height="30sp"
         android:layout_marginTop="15sp"
-        android:layout_marginEnd="15sp"
-        android:layout_marginRight="15sp"
-        android:layout_marginBottom="58sp"
+        android:layout_marginEnd="125dp"
+        android:layout_marginRight="125dp"
+        android:layout_marginBottom="5dp"
         android:background="@drawable/round_button_red"
         android:text="@string/none"
+        android:minHeight="0sp"
         app:layout_constraintBottom_toTopOf="@+id/F"
-        app:layout_constraintEnd_toStartOf="@+id/SaveRecording"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/SaveRecording"
-        android:layout_width="100sp"
-        android:layout_height="60sp"
-        android:layout_marginEnd="10sp"
-        android:layout_marginRight="10sp"
-        android:layout_marginBottom="43sp"
-        android:background="@color/MenuButtons"
-        android:orientation="horizontal"
-        android:text="@string/Save"
-        app:layout_constraintBottom_toTopOf="@+id/G"
         app:layout_constraintEnd_toStartOf="@+id/StartOver"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -205,10 +206,11 @@
         android:id="@+id/StartOver"
         android:layout_width="60sp"
         android:layout_height="60sp"
-        android:layout_marginBottom="43sp"
+        android:layout_marginBottom="5dp"
         android:background="@android:drawable/ic_media_previous"
         android:backgroundTint="@color/ButtonColor2"
         android:text="@string/none"
+        android:minHeight="0sp"
         app:layout_constraintBottom_toTopOf="@+id/A"
         app:layout_constraintEnd_toStartOf="@+id/Play"
         app:layout_constraintTop_toTopOf="parent" />
@@ -217,10 +219,11 @@
         android:id="@+id/Play"
         android:layout_width="60sp"
         android:layout_height="60sp"
-        android:layout_marginBottom="43sp"
+        android:layout_marginBottom="5dp"
         android:background="@android:drawable/ic_media_play"
         android:backgroundTint="@color/ButtonColor2"
         android:text="@string/none"
+        android:minHeight="0sp"
         app:layout_constraintBottom_toTopOf="@+id/A"
         app:layout_constraintEnd_toStartOf="@+id/Pause"
         app:layout_constraintTop_toTopOf="parent" />
@@ -229,10 +232,11 @@
         android:id="@+id/Pause"
         android:layout_width="60sp"
         android:layout_height="60sp"
-        android:layout_marginBottom="43sp"
+        android:layout_marginBottom="5dp"
         android:background="@android:drawable/ic_media_pause"
         android:backgroundTint="@color/ButtonColor2"
         android:text="@string/none"
+        android:minHeight="0sp"
         app:layout_constraintBottom_toTopOf="@+id/B"
         app:layout_constraintEnd_toStartOf="@+id/Help"
         app:layout_constraintTop_toTopOf="parent" />
@@ -241,9 +245,10 @@
         android:id="@+id/Help"
         android:layout_width="75sp"
         android:layout_height="60sp"
-        android:layout_marginBottom="43sp"
+        android:layout_marginBottom="5dp"
         android:background="@color/MenuButtons"
         android:text="@string/Help"
+        android:minHeight="0sp"
         app:layout_constraintBottom_toTopOf="@+id/CHi"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -256,7 +261,7 @@
         android:layout_marginLeft="15sp"
         android:layout_marginEnd="15sp"
         android:layout_marginRight="15sp"
-        android:layout_marginBottom="43sp"
+        android:layout_marginBottom="5dp"
         android:max="2"
         android:progress="1"
         app:layout_constraintBottom_toTopOf="@+id/CSharp"
