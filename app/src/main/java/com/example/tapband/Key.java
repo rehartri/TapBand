@@ -14,7 +14,6 @@ import java.util.ArrayList;
 class Key{
     private Context mainContext;  //The context from the main menu
     private SoundPool pool;  //SoundPool that handles playing the sounds
-    private ArrayList<Integer> soundIDs = new ArrayList<>();  //The list of sounds used by the key
     private ArrayList<Integer> sounds = new ArrayList<>();  //List of sounds loaded by the SoundPool
     private Button button; //Button the key is associated with
     private Key currentKey; //The current key used during the touch event that originated from this key
@@ -61,9 +60,6 @@ class Key{
      * Discards resources used by the key
      */
     void clear(){
-        pool.release();
-        pool = null;
-        soundIDs.clear();
         sounds.clear();
     }
 
@@ -71,8 +67,7 @@ class Key{
      * Adds a sound into the SoundPool
      * @param soundID The id of the sound to be added to the SoundPool
      */
-    void addSoundID(int soundID){
-        soundIDs.add(soundID);
+    void addSound(int soundID){
         sounds.add(pool.load(mainContext, soundID, 1));
     }
 
@@ -88,16 +83,8 @@ class Key{
         return button;
     }
 
-    public void setPressed(boolean pressed){
-        this.pressed = pressed;
-    }
-
     public int getIndex(){
         return index;
-    }
-
-    public boolean isPressed(){
-        return pressed;
     }
 
     public boolean isSharp(){

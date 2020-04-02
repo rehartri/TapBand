@@ -8,7 +8,6 @@ import android.os.Build;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.SeekBar;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -17,7 +16,7 @@ class Instrument {
     private ArrayList<Key> keyList = new ArrayList<>(); //List of all the keys in the instrument
     private ArrayList<Key> sharpKeyList = new ArrayList<>(); //List of all the sharp keys which helps reduce searching in touch listener
     private ArrayList<Integer> soundIDs = new ArrayList<>(); //List of id numbers for the sounds in the instrument
-    private SoundPool pool;
+    private SoundPool pool; //Handles all of the sounds for the instrument
     private int type = -1; //The value that determines the type of instrument created
 
 
@@ -51,47 +50,52 @@ class Instrument {
             buttonList.get(i).getButton().setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-                if ((event.getAction() & MotionEvent.ACTION_MASK) == MotionEvent.ACTION_DOWN) {
-//                    Toast.makeText(context, String.valueOf(key.getButton().getX()) + ", " + String.valueOf(((key.getButton().getX() * 1.0) + ((key.getButton().getX() + key.getButton().getWidth()) * 1.0)) / 2) + ", " + String.valueOf((key.getButton().getX() + key.getButton().getWidth())) , Toast.LENGTH_SHORT).show();
+                if ((event.getAction() & MotionEvent.ACTION_MASK) == MotionEvent.ACTION_DOWN) { //Plays the key and starts the initial key as the current key when it is pressed down
                     key.start();
                     key.setCurrentKey(key);
                     return true;
-                }else if ((event.getAction() & MotionEvent.ACTION_MASK) == MotionEvent.ACTION_MOVE) {
-                    if (inBounds(key.getCurrentKey(), event)){
-                        if(!key.getCurrentKey().isSharp()){
+                }else if ((event.getAction() & MotionEvent.ACTION_MASK) == MotionEvent.ACTION_MOVE) {  //Pointer moves after touching down
+                    if (inBounds(key.getCurrentKey(), event)){  //Motion happens within the bounds of the current key
+                        if(!key.getCurrentKey().isSharp()){  //Checks for motion overlaps between keys if the key is natural
                             searchSharp(key, event);
                         }
                         key.getCurrentKey().start();
                     }else{
                         key.getCurrentKey().end();
-                        if(key.getCurrentKey().isSharp()){
-                            if(event.getRawX() < x(key)){
+                        if(key.getCurrentKey().isSharp()){  //Handles motion on sharp keys
+                            if(event.getRawX() < x(key)){  //Pointer moves to the left of the key
                                 searchLeft(key, event);
-                            }else if(event.getRawX() > (x(key) + width(key))){
+                            }else if(event.getRawX() > (x(key) + width(key))){  //Pointer moves to the right of th key
                                 searchRight(key, event);
-                            }else if(event.getRawY() > (y(key) + height(key))){
-                                if(event.getRawX() < (((x(key) * 1.0) + ((x(key) + width(key)) * 1.0)) / 2)){
+                            }else if(event.getRawY() > (y(key) + height(key))){  //Pointer moves below the key
+                                if(event.getRawX() < (((x(key) * 1.0) + ((x(key) + width(key)) * 1.0)) / 2)){  //Pointer moves to the left of the center of the key
                                     searchLeft(key, event);
-                                }else{
+                                }else{  //Pointer moves to the right of the center of the key
                                     searchRight(key, event);
                                 }
                             }
-                        }else{
-                            if(event.getRawX() < x(key)){
+                        }else{  //Handles motion on natural keys
+                            if(event.getRawX() < x(key)){  //Pointer moves to the left of the key
                                 searchLeft(key, event);
-                            }else if(event.getRawX() > (x(key) + width(key))){
+                            }else if(event.getRawX() > (x(key) + width(key))){  //Pointer moves to the right of the key
                                 searchRight(key, event);
                             }
                         }
                         return true;
                     }
-                }else if ((event.getAction() & MotionEvent.ACTION_MASK) == MotionEvent.ACTION_UP) {
+                }else if ((event.getAction() & MotionEvent.ACTION_MASK) == MotionEvent.ACTION_UP) {  //Pointer lifts off the views
                     key.getCurrentKey().end();
                     return false;
                 }
                 return false;
             }
-            
+
+                /**
+                 * Searches through the keys to the left of the inputted one
+                 * @param key The key that is searching
+                 * @param event Holds the location of the pointer
+                 * @return Whether or not the search was successful
+                 */
             boolean searchLeft(Key key, MotionEvent event){
                 for(int i = key.getCurrentKey().getIndex(); i >= 0; i--){
                     if(inBounds(keyList.get(i), event)){
@@ -101,7 +105,12 @@ class Instrument {
                 }
                 return false;
             }
-
+                /**
+                 * Searches through the keys to the right of the inputted one
+                 * @param key The key that is searching
+                 * @param event Holds the location of the pointer
+                 * @return Whether or not the search was successful
+                 */
             boolean searchRight(Key key, MotionEvent event){
                 for(int i = key.getCurrentKey().getIndex(); i < keyList.size(); i++){
                     if(inBounds(keyList.get(i), event)){
@@ -112,6 +121,12 @@ class Instrument {
                 return false;
             }
 
+                /**
+                 * Searches through the sharp keys to determine if there is any overlap
+                 * @param key The key that is searching
+                 * @param event Holds the location of the pointer
+                 * @return Whether or not the search was successful
+                 */
             boolean searchSharp(Key key, MotionEvent event){
                 for(int i = 0; i < sharpKeyList.size(); i++){
                     if(inBounds(sharpKeyList.get(i), event)){
@@ -123,6 +138,12 @@ class Instrument {
                 return false;
             }
 
+                /**
+                 * Checks if the pointer is within the bounds of the inputted key
+                 * @param key Key in question
+                 * @param event Holds the location of the pointer
+                 * @return Whether or not the pointer is within the bounds of the key
+                 */
             boolean inBounds(Key key, MotionEvent event) {
                 if(key.isSharp()){
                     return event.getRawX() >= key.getButton().getX() && event.getRawX() <= (key.getButton().getX() + key.getButton().getWidth()) && event.getRawY() >= key.getButton().getY() && event.getRawY() <= (key.getButton().getY() + key.getButton().getHeight() + 65);
@@ -170,9 +191,10 @@ class Instrument {
     }
 
     /**
-     * Frees up the space taken up by the keys' SoundPools when they are no longer needed
+     * Frees up the space taken up by the SoundPool and the sounds in the keys when they are no longer needed
      */
     void clear(){
+        pool.release();
         for(Key key: keyList){
             key.clear();
         }
@@ -197,10 +219,10 @@ class Instrument {
             if(i >= keyList.size() - 1){
                 i = 0;
             }
-            keyList.get(i).addSoundID((Integer) it.next());
+            keyList.get(i).addSound((Integer) it.next());
         }
         for(int i = 12; i < soundIDs.size(); i += 12){
-            keyList.get(keyList.size() - 1).addSoundID(soundIDs.get(i));
+            keyList.get(keyList.size() - 1).addSound(soundIDs.get(i));
         }
     }
 
