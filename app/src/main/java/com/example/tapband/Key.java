@@ -35,20 +35,6 @@ class Key{
         this.index = index;
         this.mainContext = context;
         color = ((ColorDrawable)button.getBackground()).getColor();
-
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){ //Initializes the SoundPool based on the version of Android
-            AudioAttributes audioAttributes = new AudioAttributes.Builder()
-                    .setUsage(AudioAttributes.USAGE_ASSISTANCE_SONIFICATION)
-                    .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
-                    .build();
-
-            pool = new SoundPool.Builder()
-                    .setMaxStreams(3)
-                    .setAudioAttributes(audioAttributes)
-                    .build();
-        }else{
-            pool = new SoundPool(10, AudioManager.STREAM_MUSIC, 0);
-        }
     }
 
     /**
@@ -124,5 +110,9 @@ class Key{
 
     public void setCurrentKey(Key currentKey){
         this.currentKey = currentKey;
+    }
+
+    public void setSoundPool(SoundPool soundPool){
+        pool = soundPool;
     }
 }

@@ -1,6 +1,10 @@
 package com.example.tapband;
 
 import android.content.Context;
+import android.media.AudioAttributes;
+import android.media.AudioManager;
+import android.media.SoundPool;
+import android.os.Build;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.SeekBar;
@@ -13,6 +17,7 @@ class Instrument {
     private ArrayList<Key> keyList = new ArrayList<>(); //List of all the keys in the instrument
     private ArrayList<Key> sharpKeyList = new ArrayList<>(); //List of all the sharp keys which helps reduce searching in touch listener
     private ArrayList<Integer> soundIDs = new ArrayList<>(); //List of id numbers for the sounds in the instrument
+    private SoundPool pool;
     private int type = -1; //The value that determines the type of instrument created
 
 
@@ -23,8 +28,22 @@ class Instrument {
      * @param context The context of the main activity which gets passed into each key
      */
     Instrument(final ArrayList<KeyType> buttonList, SeekBar seekBar, final Context context){
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){ //Initializes the SoundPool based on the version of Android
+            AudioAttributes audioAttributes = new AudioAttributes.Builder()
+                    .setUsage(AudioAttributes.USAGE_ASSISTANCE_SONIFICATION)
+                    .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
+                    .build();
+
+            pool = new SoundPool.Builder()
+                    .setMaxStreams(3)
+                    .setAudioAttributes(audioAttributes)
+                    .build();
+        }else{
+            pool = new SoundPool(40, AudioManager.STREAM_MUSIC, 0);
+        }
         for(int i = 0; i < buttonList.size(); i++){  //Creates each key and passes it it's own button to use
             final Key key = new Key(buttonList.get(i).getButton(), buttonList.get(i).isSharp(), i, context);
+            key.setSoundPool(pool);
             keyList.add(key);
             if(key.isSharp()){
                 sharpKeyList.add(key);
