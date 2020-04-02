@@ -8,8 +8,6 @@ import android.media.AudioAttributes;
 import android.media.AudioManager;
 import android.media.SoundPool;
 import android.os.Build;
-import android.view.MotionEvent;
-import android.view.View;
 import android.widget.Button;
 import java.util.ArrayList;
 
@@ -19,7 +17,7 @@ class Key{
     private ArrayList<Integer> soundIDs = new ArrayList<>();  //The list of sounds used by the key
     private ArrayList<Integer> sounds = new ArrayList<>();  //List of sounds loaded by the SoundPool
     private Button button; //Button the key is associated with
-    private Rect rect = new Rect(); //Helps track movement within the bounds of the key
+    private Key currentKey; //The current key used during the touch event that originated from this key
     private int color; //Initial color of the key
     private int octave = 1;  //Determines what sounds are played by the SoundPool
     private int index; //Keeps track of which key in the piano this is
@@ -49,37 +47,8 @@ class Key{
                     .setAudioAttributes(audioAttributes)
                     .build();
         }else{
-            pool = new SoundPool(3, AudioManager.STREAM_MUSIC, 0);
+            pool = new SoundPool(10, AudioManager.STREAM_MUSIC, 0);
         }
-
-//        button.setOnTouchListener(new View.OnTouchListener() {
-//            @Override
-//            public boolean onTouch(View v, MotionEvent event) {
-//                button.getDrawingRect(rect);
-//                if ((event.getAction() & MotionEvent.ACTION_MASK) == MotionEvent.ACTION_DOWN) {
-//                    pressed = true;
-//                    start();
-//                }
-//                if ((event.getAction() & MotionEvent.ACTION_MASK) == MotionEvent.ACTION_MOVE) {
-//                    if (rect.contains((int) event.getX(), (int) event.getY())){
-//                        if (!pressed) {
-//                            pressed = true;
-//                            start();
-//                        }
-//                    } else {
-//                        pressed = false;
-//                        end();
-//                    }
-//                }
-//
-//                if ((event.getAction() & MotionEvent.ACTION_MASK) == MotionEvent.ACTION_UP) {
-//                    pressed = false;
-//                    end();
-//                }
-//                return pressed;
-//
-//            }
-//        });
     }
 
     /**
@@ -133,10 +102,6 @@ class Key{
         return button;
     }
 
-    public Rect getRect(){
-        return rect;
-    }
-
     public void setPressed(boolean pressed){
         this.pressed = pressed;
     }
@@ -151,5 +116,13 @@ class Key{
 
     public boolean isSharp(){
         return sharp;
+    }
+
+    public Key getCurrentKey(){
+        return currentKey;
+    }
+
+    public void setCurrentKey(Key currentKey){
+        this.currentKey = currentKey;
     }
 }

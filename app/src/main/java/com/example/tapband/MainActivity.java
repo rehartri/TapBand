@@ -2,24 +2,18 @@ package com.example.tapband;
 
 import android.media.MediaPlayer;
 import android.media.MediaRecorder;
-
+import android.os.Build;
 import android.os.Environment;
-
 import android.widget.Toast;
-
 import java.io.IOException;
-import java.util.Random;
-
 import static android.Manifest.permission.RECORD_AUDIO;
 import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
-
 import android.content.pm.PackageManager;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
-
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
@@ -47,7 +41,6 @@ public class MainActivity extends AppCompatActivity {
     MediaRecorder mediaRecorder;
     MediaPlayer mediaPlayer;
 
-    @RequiresApi(api = Build.VERSION_CODES.M)
     @SuppressLint("SourceLockedOrientationActivity")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
