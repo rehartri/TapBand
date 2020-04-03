@@ -56,8 +56,9 @@ public class MainActivity extends AppCompatActivity {
         pauseButton = findViewById(R.id.Pause);
         restartButton = findViewById(R.id.StartOver);
 
-        playButton.setEnabled(true);
+        playButton.setEnabled(false);
         pauseButton.setEnabled(false);
+        pauseButton.setVisibility(View.INVISIBLE);
         restartButton.setEnabled(true);
 
         menuButton.setOnClickListener(new View.OnClickListener() {
@@ -128,6 +129,9 @@ public class MainActivity extends AppCompatActivity {
                         requestPermission();
                     }
 
+                    playButton.setEnabled(true);
+                    restartButton.setEnabled(true);
+
                     color = 1;
                 }else{
                     recordButton.setBackgroundResource(R.drawable.round_button_red);
@@ -140,30 +144,30 @@ public class MainActivity extends AppCompatActivity {
 
         //Makes the play button work
         playButton.setOnClickListener(new View.OnClickListener(){
+            int player = 0;
             @Override
             public void onClick(View v) throws IllegalArgumentException, SecurityException, IllegalStateException{
-                mediaPlayer = new MediaPlayer();
-                try{
-                    mediaPlayer.setDataSource(saveAudio);
-                    mediaPlayer.prepare();
-                }catch(IOException e){
-                    e.printStackTrace();
+                if(player == 0) {
+                    playButton.setBackgroundResource(R.drawable.pause);
+                    mediaPlayer = new MediaPlayer();
+                    try {
+                        mediaPlayer.setDataSource(saveAudio);
+                        mediaPlayer.prepare();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    mediaPlayer.start();
+                    player = 1;
+                }else{
+                    playButton.setBackgroundResource(R.drawable.play);
+                    if(mediaPlayer.isPlaying()) {
+                        mediaPlayer.pause();
+                    }
+                    player = 0;
                 }
-
-                mediaPlayer.start();
             }
         });
 
-        //Makes the pause button work -- no
-        pauseButton.setOnClickListener(new View.OnClickListener(){
-            @RequiresApi(api = Build.VERSION_CODES.N)
-            @Override
-            public void onClick(View view){
-                mediaRecorder.pause();
-            }
-        });
-
-        //Could play double
         restartButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) throws IllegalArgumentException, SecurityException, IllegalStateException{
@@ -174,7 +178,9 @@ public class MainActivity extends AppCompatActivity {
                 }catch(IOException e){
                     e.printStackTrace();
                 }
-
+                if(mediaPlayer.isPlaying()) {
+                    mediaPlayer.stop();
+                }
                 mediaPlayer.start();
             }
         });

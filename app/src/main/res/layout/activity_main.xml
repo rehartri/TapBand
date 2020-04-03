@@ -210,6 +210,8 @@
         android:text="@string/none"
         app:layout_constraintEnd_toStartOf="@+id/StartOver"
         app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="321dp" />
 
     <Button
         android:id="@+id/StartOver"
@@ -226,8 +228,7 @@
         android:id="@+id/Play"
         android:layout_width="60sp"
         android:layout_height="60sp"
-        android:background="@android:drawable/ic_media_play"
-        android:backgroundTint="@color/ButtonColor2"
+        android:background="@drawable/play"
         android:minHeight="0sp"
         android:text="@string/none"
         app:layout_constraintEnd_toStartOf="@+id/Pause"
