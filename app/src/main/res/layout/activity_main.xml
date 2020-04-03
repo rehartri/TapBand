@@ -9,15 +9,15 @@
     <Button
         android:id="@+id/CLo"
         android:layout_width="84sp"
-        android:layout_height="308sp"
+        android:layout_height="250sp"
         android:background="@color/ButtonColor"
+        android:minHeight="0sp"
+        android:soundEffectsEnabled="false"
         android:stateListAnimator="@null"
         android:text="@string/none"
-        android:minHeight="0sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/D"
-        app:layout_constraintStart_toStartOf="parent"
-        android:soundEffectsEnabled="false"/>
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/CSharp"
@@ -35,17 +35,17 @@
     <Button
         android:id="@+id/D"
         android:layout_width="84sp"
-        android:layout_height="308sp"
+        android:layout_height="250sp"
         android:layout_marginStart="1sp"
         android:layout_marginLeft="1sp"
         android:background="@color/ButtonColor"
-        android:text="@string/none"
         android:minHeight="0sp"
+        android:soundEffectsEnabled="false"
         android:stateListAnimator="@null"
+        android:text="@string/none"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/E"
-        app:layout_constraintStart_toEndOf="@+id/CLo"
-        android:soundEffectsEnabled="false"/>
+        app:layout_constraintStart_toEndOf="@+id/CLo" />
 
     <Button
         android:id="@+id/DSharp"
@@ -63,32 +63,32 @@
     <Button
         android:id="@+id/E"
         android:layout_width="84sp"
-        android:layout_height="308sp"
+        android:layout_height="250sp"
         android:layout_marginStart="1sp"
         android:layout_marginLeft="1sp"
         android:background="@color/ButtonColor"
-        android:text="@string/none"
         android:minHeight="0sp"
+        android:soundEffectsEnabled="false"
         android:stateListAnimator="@null"
+        android:text="@string/none"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/F"
-        app:layout_constraintStart_toEndOf="@+id/D"
-        android:soundEffectsEnabled="false"/>
+        app:layout_constraintStart_toEndOf="@+id/D" />
 
     <Button
         android:id="@+id/F"
         android:layout_width="84sp"
-        android:layout_height="308sp"
+        android:layout_height="250sp"
         android:layout_marginStart="1sp"
         android:layout_marginLeft="1sp"
         android:background="@color/ButtonColor"
-        android:text="@string/none"
         android:minHeight="0sp"
+        android:soundEffectsEnabled="false"
         android:stateListAnimator="@null"
+        android:text="@string/none"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/G"
-        app:layout_constraintStart_toEndOf="@+id/E"
-        android:soundEffectsEnabled="false"/>
+        app:layout_constraintStart_toEndOf="@+id/E" />
 
     <Button
         android:id="@+id/FSharp"
@@ -106,17 +106,17 @@
     <Button
         android:id="@+id/G"
         android:layout_width="84sp"
-        android:layout_height="308sp"
+        android:layout_height="250sp"
         android:layout_marginStart="1sp"
         android:layout_marginLeft="1sp"
         android:background="@color/ButtonColor"
+        android:minHeight="0sp"
+        android:soundEffectsEnabled="false"
         android:stateListAnimator="@null"
         android:text="@string/none"
-        android:minHeight="0sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/A"
-        app:layout_constraintStart_toEndOf="@+id/F"
-        android:soundEffectsEnabled="false"/>
+        app:layout_constraintStart_toEndOf="@+id/F" />
 
     <Button
         android:id="@+id/GSharp"
@@ -134,17 +134,17 @@
     <Button
         android:id="@+id/A"
         android:layout_width="84sp"
-        android:layout_height="308sp"
+        android:layout_height="250sp"
         android:layout_marginStart="1sp"
         android:layout_marginLeft="1sp"
         android:background="@color/ButtonColor"
-        android:text="@string/none"
         android:minHeight="0sp"
+        android:soundEffectsEnabled="false"
         android:stateListAnimator="@null"
+        android:text="@string/none"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/B"
-        app:layout_constraintStart_toEndOf="@+id/G"
-        android:soundEffectsEnabled="false"/>
+        app:layout_constraintStart_toEndOf="@+id/G" />
 
     <Button
         android:id="@+id/ASharp"
@@ -162,41 +162,39 @@
     <Button
         android:id="@+id/B"
         android:layout_width="84sp"
-        android:layout_height="308sp"
+        android:layout_height="250sp"
         android:layout_marginStart="1sp"
         android:layout_marginLeft="1sp"
         android:background="@color/ButtonColor"
-        android:text="@string/none"
         android:minHeight="0sp"
+        android:soundEffectsEnabled="false"
         android:stateListAnimator="@null"
+        android:text="@string/none"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/CHi"
-        app:layout_constraintStart_toEndOf="@+id/A"
-        android:soundEffectsEnabled="false"/>
+        app:layout_constraintStart_toEndOf="@+id/A" />
 
     <Button
         android:id="@+id/CHi"
         android:layout_width="84sp"
-        android:layout_height="308sp"
+        android:layout_height="250sp"
         android:layout_marginStart="1sp"
         android:layout_marginLeft="1sp"
         android:background="@color/ButtonColor"
-        android:text="@string/none"
         android:minHeight="0sp"
+        android:soundEffectsEnabled="false"
+        android:text="@string/none"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/B"
-        android:soundEffectsEnabled="false"/>
+        app:layout_constraintStart_toEndOf="@+id/B" />
 
     <Button
         android:id="@+id/Menu"
         android:layout_width="75sp"
         android:layout_height="60sp"
-        android:layout_marginBottom="5dp"
         android:background="@color/MenuButtons"
-        android:text="@string/Menu"
         android:minHeight="0sp"
-        app:layout_constraintBottom_toTopOf="@+id/CLo"
+        android:text="@string/Menu"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -207,11 +205,9 @@
         android:layout_marginTop="15sp"
         android:layout_marginEnd="125dp"
         android:layout_marginRight="125dp"
-        android:layout_marginBottom="5dp"
         android:background="@drawable/round_button_red"
-        android:text="@string/none"
         android:minHeight="0sp"
-        app:layout_constraintBottom_toTopOf="@+id/F"
+        android:text="@string/none"
         app:layout_constraintEnd_toStartOf="@+id/StartOver"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -219,12 +215,10 @@
         android:id="@+id/StartOver"
         android:layout_width="60sp"
         android:layout_height="60sp"
-        android:layout_marginBottom="5dp"
         android:background="@android:drawable/ic_media_previous"
         android:backgroundTint="@color/ButtonColor2"
-        android:text="@string/none"
         android:minHeight="0sp"
-        app:layout_constraintBottom_toTopOf="@+id/A"
+        android:text="@string/none"
         app:layout_constraintEnd_toStartOf="@+id/Play"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -232,12 +226,10 @@
         android:id="@+id/Play"
         android:layout_width="60sp"
         android:layout_height="60sp"
-        android:layout_marginBottom="5dp"
         android:background="@android:drawable/ic_media_play"
         android:backgroundTint="@color/ButtonColor2"
-        android:text="@string/none"
         android:minHeight="0sp"
-        app:layout_constraintBottom_toTopOf="@+id/A"
+        android:text="@string/none"
         app:layout_constraintEnd_toStartOf="@+id/Pause"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -245,12 +237,10 @@
         android:id="@+id/Pause"
         android:layout_width="60sp"
         android:layout_height="60sp"
-        android:layout_marginBottom="5dp"
         android:background="@android:drawable/ic_media_pause"
         android:backgroundTint="@color/ButtonColor2"
-        android:text="@string/none"
         android:minHeight="0sp"
-        app:layout_constraintBottom_toTopOf="@+id/B"
+        android:text="@string/none"
         app:layout_constraintEnd_toStartOf="@+id/Help"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -258,11 +248,9 @@
         android:id="@+id/Help"
         android:layout_width="75sp"
         android:layout_height="60sp"
-        android:layout_marginBottom="5dp"
         android:background="@color/MenuButtons"
-        android:text="@string/Help"
         android:minHeight="0sp"
-        app:layout_constraintBottom_toTopOf="@+id/CHi"
+        android:text="@string/Help"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -274,10 +262,8 @@
         android:layout_marginLeft="15sp"
         android:layout_marginEnd="15sp"
         android:layout_marginRight="15sp"
-        android:layout_marginBottom="5dp"
         android:max="2"
         android:progress="1"
-        app:layout_constraintBottom_toTopOf="@+id/CSharp"
         app:layout_constraintEnd_toStartOf="@+id/Record"
         app:layout_constraintStart_toEndOf="@+id/Menu"
         app:layout_constraintTop_toTopOf="parent" />
