@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <Button
+        android:id="@+id/Menu"
+        android:layout_width="75sp"
+        android:layout_height="60sp"
+        android:background="@color/MenuButtons"
+        android:minHeight="0sp"
+        android:text="@string/Menu"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/Record"
+        android:layout_width="30sp"
+        android:layout_height="30sp"
+        android:layout_marginTop="15sp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginRight="30dp"
+        android:background="@drawable/round_button_red"
+        android:minHeight="0sp"
+        android:text="@string/none"
+        app:layout_constraintEnd_toStartOf="@+id/StartOver"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/StartOver"
+        android:layout_width="60sp"
+        android:layout_height="60sp"
+        android:background="@android:drawable/ic_media_previous"
+        android:backgroundTint="@color/ButtonColor2"
+        android:minHeight="0sp"
+        android:text="@string/none"
+        app:layout_constraintEnd_toStartOf="@+id/Play"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/Play"
+        android:layout_width="60sp"
+        android:layout_height="60sp"
+        android:background="@android:drawable/ic_media_play"
+        android:backgroundTint="@color/ButtonColor2"
+        android:minHeight="0sp"
+        android:text="@string/none"
+        app:layout_constraintEnd_toStartOf="@+id/Pause"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/Pause"
+        android:layout_width="60sp"
+        android:layout_height="60sp"
+        android:background="@android:drawable/ic_media_pause"
+        android:backgroundTint="@color/ButtonColor2"
+        android:minHeight="0sp"
+        android:text="@string/none"
+        app:layout_constraintEnd_toStartOf="@+id/Help"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/Help"
+        android:layout_width="75sp"
+        android:layout_height="60sp"
+        android:background="@color/MenuButtons"
+        android:minHeight="0sp"
+        android:text="@string/Help"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <SeekBar
+        android:id="@+id/seekBar"
+        android:layout_width="201sp"
+        android:layout_height="60sp"
+        android:layout_marginStart="83dp"
+        android:layout_marginLeft="83dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginRight="50dp"
+        android:max="2"
+        android:progress="1"
+        app:layout_constraintEnd_toStartOf="@+id/Record"
+        app:layout_constraintStart_toEndOf="@+id/Menu"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
