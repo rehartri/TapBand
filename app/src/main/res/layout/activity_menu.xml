@@ -66,7 +66,8 @@
     <ImageView
         android:id="@+id/instrumentView"
         android:layout_width="306dp"
-        android:layout_height="191dp"
+        android:layout_height="167dp"
+        android:layout_marginBottom="23dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/nextActivityButton"
         app:layout_constraintStart_toStartOf="parent"
