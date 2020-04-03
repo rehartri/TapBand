@@ -228,18 +228,9 @@
         android:id="@+id/Play"
         android:layout_width="60sp"
         android:layout_height="60sp"
+        android:layout_marginEnd="60dp"
+        android:layout_marginRight="60dp"
         android:background="@drawable/play"
-        android:minHeight="0sp"
-        android:text="@string/none"
-        app:layout_constraintEnd_toStartOf="@+id/Pause"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/Pause"
-        android:layout_width="60sp"
-        android:layout_height="60sp"
-        android:background="@android:drawable/ic_media_pause"
-        android:backgroundTint="@color/ButtonColor2"
         android:minHeight="0sp"
         android:text="@string/none"
         app:layout_constraintEnd_toStartOf="@+id/Help"
