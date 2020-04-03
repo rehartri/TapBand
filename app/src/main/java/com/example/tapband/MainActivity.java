@@ -53,12 +53,9 @@ public class MainActivity extends AppCompatActivity {
         //Buttons to work the record aspect
         recordButton = findViewById(R.id.Record);
         playButton = findViewById(R.id.Play);
-        pauseButton = findViewById(R.id.Pause);
         restartButton = findViewById(R.id.StartOver);
 
         playButton.setEnabled(false);
-        pauseButton.setEnabled(false);
-        pauseButton.setVisibility(View.INVISIBLE);
         restartButton.setEnabled(true);
 
         menuButton.setOnClickListener(new View.OnClickListener() {
@@ -171,15 +168,15 @@ public class MainActivity extends AppCompatActivity {
         restartButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) throws IllegalArgumentException, SecurityException, IllegalStateException{
+                if(mediaPlayer.isPlaying()) {
+                    mediaPlayer.stop();
+                }
                 mediaPlayer = new MediaPlayer();
                 try{
                     mediaPlayer.setDataSource(saveAudio);
                     mediaPlayer.prepare();
                 }catch(IOException e){
                     e.printStackTrace();
-                }
-                if(mediaPlayer.isPlaying()) {
-                    mediaPlayer.stop();
                 }
                 mediaPlayer.start();
             }
