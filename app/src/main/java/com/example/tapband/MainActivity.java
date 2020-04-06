@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
         restartButton = findViewById(R.id.StartOver);
 
         playButton.setEnabled(false);
-        restartButton.setEnabled(true);
+        restartButton.setEnabled(false);
 
         menuButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -154,6 +154,7 @@ public class MainActivity extends AppCompatActivity {
                         e.printStackTrace();
                     }
                     mediaPlayer.start();
+                    restartButton.setEnabled(true);
                     player = 1;
                 }else{
                     playButton.setBackgroundResource(R.drawable.play);
@@ -171,7 +172,7 @@ public class MainActivity extends AppCompatActivity {
                 if(mediaPlayer.isPlaying()) {
                     mediaPlayer.stop();
                 }
-                mediaPlayer = new MediaPlayer();
+                //mediaPlayer = new MediaPlayer();
                 try{
                     mediaPlayer.setDataSource(saveAudio);
                     mediaPlayer.prepare();
