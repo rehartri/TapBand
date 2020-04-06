@@ -169,6 +169,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) throws IllegalArgumentException, SecurityException, IllegalStateException{
                 playButton.setBackgroundResource(R.drawable.pause);
+                restartButton.setEnabled(false);
 
                 mediaPlayer.stop();
 
