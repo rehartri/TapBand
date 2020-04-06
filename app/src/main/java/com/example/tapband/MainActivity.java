@@ -142,6 +142,11 @@ public class MainActivity extends AppCompatActivity {
             int player = 0;
             @Override
             public void onClick(View v) throws IllegalArgumentException, SecurityException, IllegalStateException{
+                if(!mediaPlayer.isPlaying()){//Gets the play pause functionality in the right position
+                    player = 0;
+                }else{
+                    player = 1;
+                }
                 if(player == 0) {
                     playButton.setBackgroundResource(R.drawable.pause);
                     mediaPlayer = new MediaPlayer();
