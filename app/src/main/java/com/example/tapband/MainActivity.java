@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
         restartButton = findViewById(R.id.StartOver);
 
         playButton.setEnabled(false);
-        restartButton.setEnabled(true);
+        restartButton.setEnabled(false);
 
         menuButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -123,14 +123,12 @@ public class MainActivity extends AppCompatActivity {
                         requestPermission();
                     }
 
-                    playButton.setEnabled(true);
-                    restartButton.setEnabled(true);
-
                     color = 1;
                 }else{
                     recordButton.setBackgroundResource(R.drawable.round_button_red);
                     mediaRecorder.stop();
                     Toast.makeText(MainActivity.this, "Recording stopped", Toast.LENGTH_LONG).show();
+                    playButton.setEnabled(true);
                     color = 0;
                 }
             }
@@ -141,9 +139,15 @@ public class MainActivity extends AppCompatActivity {
             int player = 0;
             @Override
             public void onClick(View v) throws IllegalArgumentException, SecurityException, IllegalStateException{
+                mediaPlayer = new MediaPlayer();
+                if(!mediaPlayer.isPlaying()){//Gets the play pause functionality in the right position
+                    player = 0;
+                }else{
+                    player = 1;
+                }
                 if(player == 0) {
                     playButton.setBackgroundResource(R.drawable.pause);
-                    mediaPlayer = new MediaPlayer();
+                    //mediaPlayer = new MediaPlayer();
                     try {
                         mediaPlayer.setDataSource(saveAudio);
                         mediaPlayer.prepare();
@@ -151,12 +155,14 @@ public class MainActivity extends AppCompatActivity {
                         e.printStackTrace();
                     }
                     mediaPlayer.start();
+                    restartButton.setEnabled(false);
                     player = 1;
                 }else{
                     playButton.setBackgroundResource(R.drawable.play);
                     if(mediaPlayer.isPlaying()) {
                         mediaPlayer.pause();
                     }
+                    restartButton.setEnabled(true);
                     player = 0;
                 }
             }
@@ -165,9 +171,11 @@ public class MainActivity extends AppCompatActivity {
         restartButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) throws IllegalArgumentException, SecurityException, IllegalStateException{
-                if(mediaPlayer.isPlaying()) {
-                    mediaPlayer.stop();
-                }
+                playButton.setBackgroundResource(R.drawable.pause);
+                restartButton.setEnabled(false);
+
+                mediaPlayer.stop();
+
                 mediaPlayer = new MediaPlayer();
                 try{
                     mediaPlayer.setDataSource(saveAudio);
