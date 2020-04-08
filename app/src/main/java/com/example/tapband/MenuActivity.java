@@ -55,6 +55,7 @@ public class MenuActivity extends AppCompatActivity {
                 if (currentImage > drawables.length-1){ // looks for the index being too large
                     currentImage = 0; //index was too large, reset
                 }
+                keyboardIntent.putExtra("currentImage", currentImage); // Sends the current image variables's value to the main activity under the same name
                 instrumentImageView.setImageResource(drawables[currentImage]); //Set new image
             }
         });

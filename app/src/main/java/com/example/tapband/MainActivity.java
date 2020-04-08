@@ -44,6 +44,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         menuIntent = new Intent(this, MenuActivity.class);
+        Intent intent = getIntent();
+        int currentImage = intent.getIntExtra("currentImage", 0);
 
         menuButton = findViewById(R.id.Menu);
 
