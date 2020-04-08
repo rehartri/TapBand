@@ -43,7 +43,7 @@ class Key{
     public void start(){
         if (!pressed) {
             pressed = true;
-            pool.play(sounds.get(octave), volume, volume, 0, 0, 1);
+            pool.play(sounds.get(octave),1, 1, 0, 0, 1);
             button.setBackgroundColor(Color.argb(255, 0, 176, 255));
         }
     }
