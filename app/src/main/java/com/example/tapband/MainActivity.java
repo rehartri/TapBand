@@ -141,15 +141,9 @@ public class MainActivity extends AppCompatActivity {
             int player = 0;
             @Override
             public void onClick(View v) throws IllegalArgumentException, SecurityException, IllegalStateException{
-                mediaPlayer = new MediaPlayer();
-                if(!mediaPlayer.isPlaying()){//Gets the play pause functionality in the right position
-                    player = 0;
-                }else{
-                    player = 1;
-                }
                 if(player == 0) {
                     playButton.setBackgroundResource(R.drawable.pause);
-                    //mediaPlayer = new MediaPlayer();
+                    mediaPlayer = new MediaPlayer();
                     try {
                         mediaPlayer.setDataSource(saveAudio);
                         mediaPlayer.prepare();
@@ -157,37 +151,63 @@ public class MainActivity extends AppCompatActivity {
                         e.printStackTrace();
                     }
                     mediaPlayer.start();
-                    restartButton.setEnabled(false);
+                    restartButton.setEnabled(true);
                     player = 1;
                 }else{
                     playButton.setBackgroundResource(R.drawable.play);
                     if(mediaPlayer.isPlaying()) {
                         mediaPlayer.pause();
                     }
-                    restartButton.setEnabled(true);
+
                     player = 0;
                 }
             }
         });
 
         restartButton.setOnClickListener(new View.OnClickListener(){
+
+            private static final long MIN_DELAY = 500;
+
+            private long clickTime;
+
             @Override
-            public void onClick(View v) throws IllegalArgumentException, SecurityException, IllegalStateException{
-                playButton.setBackgroundResource(R.drawable.pause);
-                restartButton.setEnabled(false);
+            public void onClick(View v) throws IllegalStateException, SecurityException{
+                long timedClick = clickTime;
+                long now = System.currentTimeMillis();
+                clickTime = now;
+                if(now - timedClick < MIN_DELAY) {
+                    Toast.makeText(MainActivity.this,"Bad Trent", Toast.LENGTH_LONG).show();
+                }else {
+                    mediaPlayer.stop();
 
-                mediaPlayer.stop();
-
-                mediaPlayer = new MediaPlayer();
-                try{
-                    mediaPlayer.setDataSource(saveAudio);
-                    mediaPlayer.prepare();
-                }catch(IOException e){
-                    e.printStackTrace();
+                    mediaPlayer = new MediaPlayer();
+                    try {
+                        mediaPlayer.setDataSource(saveAudio);
+                        mediaPlayer.prepare();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    mediaPlayer.start();
                 }
-                mediaPlayer.start();
             }
         });
+
+//        restartButton.setOnClickListener(new View.OnClickListener(){
+//            @Override
+//            public void onClick(View v) throws IllegalArgumentException, SecurityException, IllegalStateException{
+//
+//                mediaPlayer.stop();
+//
+//                mediaPlayer = new MediaPlayer();
+//                try{
+//                    mediaPlayer.setDataSource(saveAudio);
+//                    mediaPlayer.prepare();
+//                }catch(IOException e){
+//                    e.printStackTrace();
+//                }
+//                mediaPlayer.start();
+//            }
+//        });
 
     }
 
