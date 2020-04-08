@@ -166,7 +166,7 @@ public class MainActivity extends AppCompatActivity {
 
         restartButton.setOnClickListener(new View.OnClickListener(){
 
-            private static final long MIN_DELAY = 500;
+            private static final long MIN_DELAY = 1000;
 
             private long clickTime;
 
