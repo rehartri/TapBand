@@ -210,6 +210,14 @@ class Instrument {
         }
         this.type = type;
         switch(type){
+            case 0:
+                pianoBuild();
+                break;
+
+            case 1:
+                synthBuild();
+                break;
+
             default:
                 pianoBuild();
                 break;
@@ -274,5 +282,55 @@ class Instrument {
         soundIDs.add(R.raw.piano_b5);
         //Octave 4
         soundIDs.add(R.raw.piano_c6);
+    }
+
+    /**
+     * Changes the sounds in the sound list to piano notes
+     */
+    private void synthBuild(){
+        if(soundIDs != null){
+            soundIDs.clear();
+        }
+        //Octave 1
+        soundIDs.add(R.raw.synth_c3);
+        soundIDs.add(R.raw.synth_csharp3);
+        soundIDs.add(R.raw.synth_d3);
+        soundIDs.add(R.raw.synth_dsharp3);
+        soundIDs.add(R.raw.synth_e3);
+        soundIDs.add(R.raw.synth_f3);
+        soundIDs.add(R.raw.synth_fsharp3);
+        soundIDs.add(R.raw.synth_g3);
+        soundIDs.add(R.raw.synth_gsharp3);
+        soundIDs.add(R.raw.synth_a3);
+        soundIDs.add(R.raw.synth_asharp3);
+        soundIDs.add(R.raw.synth_b3);
+        //Octave 2
+        soundIDs.add(R.raw.synth_c4);
+        soundIDs.add(R.raw.synth_csharp4);
+        soundIDs.add(R.raw.synth_d4);
+        soundIDs.add(R.raw.synth_dsharp4);
+        soundIDs.add(R.raw.synth_e4);
+        soundIDs.add(R.raw.synth_f4);
+        soundIDs.add(R.raw.synth_fsharp4);
+        soundIDs.add(R.raw.synth_g4);
+        soundIDs.add(R.raw.synth_gsharp4);
+        soundIDs.add(R.raw.synth_a4);
+        soundIDs.add(R.raw.synth_asharp4);
+        soundIDs.add(R.raw.synth_b4);
+        //Octave 3
+        soundIDs.add(R.raw.synth_c5);
+        soundIDs.add(R.raw.synth_csharp5);
+        soundIDs.add(R.raw.synth_d5);
+        soundIDs.add(R.raw.synth_dsharp5);
+        soundIDs.add(R.raw.synth_e5);
+        soundIDs.add(R.raw.synth_f5);
+        soundIDs.add(R.raw.synth_fsharp5);
+        soundIDs.add(R.raw.synth_g5);
+        soundIDs.add(R.raw.synth_gsharp5);
+        soundIDs.add(R.raw.synth_a5);
+        soundIDs.add(R.raw.synth_asharp5);
+        soundIDs.add(R.raw.synth_b5);
+        //Octave 4
+        soundIDs.add(R.raw.synth_c6);
     }
 }

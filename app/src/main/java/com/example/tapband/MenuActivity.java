@@ -36,7 +36,7 @@ public class MenuActivity extends AppCompatActivity {
         instrumentImageView = findViewById(R.id.instrumentView);
         helpButton = findViewById(R.id.helpButton);
 
-        final int[] drawables = new int[] { R.drawable.piano}; // Put images here
+        final int[] drawables = new int[] { R.drawable.piano, R.drawable.synth}; // Put images here
 
 
         //Button click listener -- aka this gets called when the continue button is pressed
