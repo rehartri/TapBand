@@ -14,11 +14,10 @@
                                 "2. Octave Selector: Slide left for lower pitch notes, right for higher ones.\n"
                                 "3. Record Button: Press the button to start recording, it will turn red. Press again to stop.\n"
                                 "   NOTE:Recording automatically saves when recording stops, and overwrites\n"
-                                "   any previous recordings!\n"
-                                "4. Restart Button: Restart the playback of the selected recording.\n"
-                                "5. Play Button: Play the selected recording.\n"
-                                "6. Pause Button: Stop the current playback.\n"
-                                "7. Help Button: Use this button to return to this screen.\n"
-                                "8. Keyboard Keys: Press the keys to make sounds."</string>
+                                "   the previous recording!\n"
+                                "4. Restart Button: Restart the playback of the recording.\n"
+                                "5. Play/Pause Button: Play the selected recording. Press again to stop playback.\n"
+                                "6. Help Button: Use this button to return to this screen.\n"
+                                "7. Keyboard Keys: Press the keys to make sounds."</string>
     <string name="show_help_diagram">Show help diagram</string>
 </resources>
