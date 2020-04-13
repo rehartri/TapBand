@@ -28,14 +28,12 @@
         android:layout_height="133dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
-        android:layout_marginBottom="133dp"
         android:text="@string/Help"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/colorButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/nextActivityButton"
-        app:layout_constraintTop_toBottomOf="@+id/logoBar"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/logoBar" />
 
     <Button
         android:id="@+id/ChooseInstrument"
@@ -94,14 +92,26 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="293dp"
-        android:layout_height="161dp"
-        android:layout_marginStart="1dp"
-        android:layout_marginLeft="1dp"
-        android:layout_marginTop="28dp"
+        android:layout_width="110dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="175dp"
+        android:layout_marginLeft="175dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/nextActivityButton"
-        app:layout_constraintTop_toBottomOf="@+id/helpButton"
+        app:layout_constraintTop_toBottomOf="@+id/colorButton"
         app:srcCompat="@drawable/tapband" />
+
+    <Button
+        android:id="@+id/colorButton"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="294dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="31dp"
+        android:text="Change Color"
+        app:layout_constraintBottom_toTopOf="@+id/imageView"
+        app:layout_constraintStart_toEndOf="@+id/nextActivityButton"
+        app:layout_constraintTop_toBottomOf="@+id/helpButton" />
 </androidx.constraintlayout.widget.ConstraintLayout>
