@@ -2,6 +2,7 @@ package com.example.tapband;
 
 import android.media.MediaPlayer;
 import android.media.MediaRecorder;
+import android.os.CountDownTimer;
 import android.os.Environment;
 import android.widget.Toast;
 import java.io.IOException;
@@ -37,6 +38,9 @@ public class MainActivity extends AppCompatActivity {
 
     MediaRecorder mediaRecorder;
     MediaPlayer mediaPlayer;
+    long recordTime = 0;
+    int player = 0;
+    CountDownTimer count;
 
     @SuppressLint("SourceLockedOrientationActivity")
     @Override
@@ -104,6 +108,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v){
                 if (color == 0) {
+                    long start = System.currentTimeMillis();
+
                     recordButton.setBackgroundResource(R.drawable.round_button_green);
 
                     if(checkPermission()) {
@@ -125,6 +131,8 @@ public class MainActivity extends AppCompatActivity {
                         requestPermission();
                     }
 
+                    long end = System.currentTimeMillis();
+                    recordTime = end - start;
                     color = 1;
                 }else{
                     recordButton.setBackgroundResource(R.drawable.round_button_red);
@@ -138,7 +146,6 @@ public class MainActivity extends AppCompatActivity {
 
         //Makes the play button work
         playButton.setOnClickListener(new View.OnClickListener(){
-            int player = 0;
             @Override
             public void onClick(View v) throws IllegalArgumentException, SecurityException, IllegalStateException{
                 if(player == 0) {
@@ -152,8 +159,29 @@ public class MainActivity extends AppCompatActivity {
                     }
                     mediaPlayer.start();
                     restartButton.setEnabled(true);
+
                     player = 1;
+
+                    //New attempt at countdown
+                    count = new CountDownTimer(recordTime, 200){
+
+                        @Override
+                        public void onTick(long millisUntilFinished) {
+                            recordTime -= 200;
+                        }
+
+                        @Override
+                        public void onFinish() {
+                            player = 0;
+                            playButton.setBackgroundResource(R.drawable.play);
+                        }
+                    };
+                    //End
+
                 }else{
+                    //Attempt
+                    count.cancel();
+                    //End
                     playButton.setBackgroundResource(R.drawable.play);
                     if(mediaPlayer.isPlaying()) {
                         mediaPlayer.pause();
@@ -166,7 +194,7 @@ public class MainActivity extends AppCompatActivity {
 
         restartButton.setOnClickListener(new View.OnClickListener(){
 
-            private static final long MIN_DELAY = 1000;
+            private static final long MIN_DELAY = 500;//Prevent button spam
 
             private long clickTime;
 
@@ -176,9 +204,28 @@ public class MainActivity extends AppCompatActivity {
                 long now = System.currentTimeMillis();
                 clickTime = now;
                 if(now - timedClick < MIN_DELAY) {
-                    Toast.makeText(MainActivity.this,"Bad Trent", Toast.LENGTH_LONG).show();
+                    Toast.makeText(MainActivity.this,"STOP SPAMMING", Toast.LENGTH_LONG).show();
                 }else {
                     mediaPlayer.stop();
+
+                    player = 0;
+                    playButton.setBackgroundResource(R.drawable.pause);
+
+                    //Attempt
+                    count = new CountDownTimer(recordTime, 200){
+
+                        @Override
+                        public void onTick(long millisUntilFinished) {
+                            recordTime -= 200;
+                        }
+
+                        @Override
+                        public void onFinish() {
+                            player = 0;
+                            playButton.setBackgroundResource(R.drawable.play);
+                        }
+                    };
+                    //End
 
                     mediaPlayer = new MediaPlayer();
                     try {
@@ -191,24 +238,6 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
-
-//        restartButton.setOnClickListener(new View.OnClickListener(){
-//            @Override
-//            public void onClick(View v) throws IllegalArgumentException, SecurityException, IllegalStateException{
-//
-//                mediaPlayer.stop();
-//
-//                mediaPlayer = new MediaPlayer();
-//                try{
-//                    mediaPlayer.setDataSource(saveAudio);
-//                    mediaPlayer.prepare();
-//                }catch(IOException e){
-//                    e.printStackTrace();
-//                }
-//                mediaPlayer.start();
-//            }
-//        });
-
     }
 
     public void nextScreen(){
@@ -290,5 +319,4 @@ public class MainActivity extends AppCompatActivity {
                 }
         }
     }
-
 }
