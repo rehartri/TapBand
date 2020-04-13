@@ -17,6 +17,7 @@ class Instrument {
     private ArrayList<Key> sharpKeyList = new ArrayList<>(); //List of all the sharp keys which helps reduce searching in touch listener
     private ArrayList<Integer> soundIDs = new ArrayList<>(); //List of id numbers for the sounds in the instrument
     private SoundPool pool; //Handles all of the sounds for the instrument
+    private SeekBar seekBar;
     private int type = -1; //The value that determines the type of instrument created
 
 
@@ -27,6 +28,7 @@ class Instrument {
      * @param context The context of the main activity which gets passed into each key
      */
     Instrument(final ArrayList<KeyType> buttonList, SeekBar seekBar, final Context context){
+        this.seekBar = seekBar;
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){ //Initializes the SoundPool based on the version of Android
             AudioAttributes audioAttributes = new AudioAttributes.Builder()
                     .setUsage(AudioAttributes.USAGE_ASSISTANCE_SONIFICATION)
@@ -218,6 +220,10 @@ class Instrument {
                 synthBuild();
                 break;
 
+            case 2:
+                fluteBuild();
+                break;
+
             default:
                 pianoBuild();
                 break;
@@ -232,6 +238,8 @@ class Instrument {
         for(int i = 12; i < soundIDs.size(); i += 12){
             keyList.get(keyList.size() - 1).addSound(soundIDs.get(i));
         }
+        seekBar.setMax((soundIDs.size() / 12) - 1);
+        seekBar.setProgress(seekBar.getMax() / 2);
     }
 
     /**
@@ -285,7 +293,7 @@ class Instrument {
     }
 
     /**
-     * Changes the sounds in the sound list to piano notes
+     * Changes the sounds in the sound list to synthesizer notes
      */
     private void synthBuild(){
         if(soundIDs != null){
@@ -332,5 +340,56 @@ class Instrument {
         soundIDs.add(R.raw.synth_b5);
         //Octave 4
         soundIDs.add(R.raw.synth_c6);
+    }
+
+    /**
+     * Changes the sounds in the sound list to flute notes
+     */
+    private void fluteBuild(){
+        if(soundIDs != null){
+            soundIDs.clear();
+        }
+
+        //Octave 1
+        soundIDs.add(R.raw.flute_c4);
+        soundIDs.add(R.raw.flute_csharp4);
+        soundIDs.add(R.raw.flute_d4);
+        soundIDs.add(R.raw.flute_dsharp4);
+        soundIDs.add(R.raw.flute_e4);
+        soundIDs.add(R.raw.flute_f4);
+        soundIDs.add(R.raw.flute_fsharp4);
+        soundIDs.add(R.raw.flute_g4);
+        soundIDs.add(R.raw.flute_gsharp4);
+        soundIDs.add(R.raw.flute_a4);
+        soundIDs.add(R.raw.flute_asharp4);
+        soundIDs.add(R.raw.flute_b4);
+        //Octave 2
+        soundIDs.add(R.raw.flute_c5);
+        soundIDs.add(R.raw.flute_csharp5);
+        soundIDs.add(R.raw.flute_d5);
+        soundIDs.add(R.raw.flute_dsharp5);
+        soundIDs.add(R.raw.flute_e5);
+        soundIDs.add(R.raw.flute_f5);
+        soundIDs.add(R.raw.flute_fsharp5);
+        soundIDs.add(R.raw.flute_g5);
+        soundIDs.add(R.raw.flute_gsharp5);
+        soundIDs.add(R.raw.flute_a5);
+        soundIDs.add(R.raw.flute_asharp5);
+        soundIDs.add(R.raw.flute_b5);
+        //Octave 3
+        soundIDs.add(R.raw.flute_c6);
+        soundIDs.add(R.raw.flute_csharp6);
+        soundIDs.add(R.raw.flute_d6);
+        soundIDs.add(R.raw.flute_dsharp6);
+        soundIDs.add(R.raw.flute_e6);
+        soundIDs.add(R.raw.flute_f6);
+        soundIDs.add(R.raw.flute_fsharp6);
+        soundIDs.add(R.raw.flute_g6);
+        soundIDs.add(R.raw.flute_gsharp6);
+        soundIDs.add(R.raw.flute_a6);
+        soundIDs.add(R.raw.flute_asharp6);
+        soundIDs.add(R.raw.flute_b6);
+        //Octave 4
+        soundIDs.add(R.raw.flute_c7);
     }
 }
