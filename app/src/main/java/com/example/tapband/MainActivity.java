@@ -39,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
     MediaRecorder mediaRecorder;
     MediaPlayer mediaPlayer;
     long recordTime = 0;
+    long pauseTime = 0;
     int player = 0;
     CountDownTimer count;
 
@@ -162,25 +163,30 @@ public class MainActivity extends AppCompatActivity {
 
                     player = 1;
 
-                    //New attempt at countdown
-                    count = new CountDownTimer(recordTime, 200){
+                    String r = Long.toString(recordTime);
+                    Toast.makeText(MainActivity.this, r, Toast.LENGTH_LONG).show();
 
+                    //New attempt at countdown
+                    count = new CountDownTimer(recordTime, 500){
                         @Override
                         public void onTick(long millisUntilFinished) {
-                            recordTime -= 200;
+                            pauseTime = millisUntilFinished;
+                            Toast.makeText(MainActivity.this, "Tick", Toast.LENGTH_LONG).show();
                         }
 
                         @Override
                         public void onFinish() {
                             player = 0;
+                            Toast.makeText(MainActivity.this, "Done", Toast.LENGTH_LONG).show();
                             playButton.setBackgroundResource(R.drawable.play);
                         }
-                    };
+                    }.start();
                     //End
 
                 }else{
                     //Attempt
                     count.cancel();
+                    recordTime = pauseTime;
                     //End
                     playButton.setBackgroundResource(R.drawable.play);
                     if(mediaPlayer.isPlaying()) {
