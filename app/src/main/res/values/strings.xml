@@ -10,7 +10,13 @@
 
 
     <!-- Resource for the help screen text element. -->
-    <string name="Help_Text">" 1. Menu Button: Return to main menu.\n"
+    <string name="Help_Text1">" 1.  Switch Instrument: Press this button to change to different instruments.\n"
+                                "2. Help button: Return to this screen.\n"
+                                "3. Go to Instrument: Go to the instrument screen, will play sounds based on selected instrument.\n"
+                                "4. Selected Instrument: Displays what instrument is currently selected.\n"
+                                "5. Change Color: Change the color scheme of the app!\n"</string>
+
+    <string name="Help_Text2">" 1. Menu Button: Return to main menu.\n"
                                 "2. Octave Selector: Slide left for lower pitch notes, right for higher ones.\n"
                                 "3. Record Button: Press the button to start recording, it will turn red. Press again to stop.\n"
                                 "   NOTE:Recording automatically saves when recording stops, and overwrites\n"

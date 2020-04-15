@@ -42,27 +42,41 @@
             android:layout_height="wrap_content">
 
             <ImageView
-                android:id="@+id/HelpImage"
-                android:layout_width="565dp"
-                android:layout_height="360dp"
-                android:layout_marginStart="100dp"
-                android:layout_marginLeft="100dp"
-                android:contentDescription="@string/show_help_diagram"
-                app:srcCompat="@drawable/help_screen_diagram" />
+                android:layout_width="600dp"
+                android:layout_height="500dp"
+                android:id="@+id/HelpImage1"
+                android:layout_marginStart="75dp"
+                android:layout_marginLeft="75dp"
+                android:layout_marginTop="-80dp"
+                app:srcCompat="@drawable/help_screen_1"
+                android:contentDescription="Help Menu" />
 
             <TextView
-                android:id="@+id/HelpText"
                 android:layout_width="match_parent"
-                android:layout_height="300dp"
-                android:layout_marginTop="375dp"
-                android:layout_marginStart="110dp"
-                android:layout_marginEnd="5dp"
-                android:text="@string/Help_Text"
-                android:textSize="14sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:layout_marginLeft="110dp"
-                android:layout_marginRight="5dp" />
+                android:layout_height="wrap_content"
+                android:text="@string/Help_Text1"
+                android:layout_marginTop="350dp"
+                android:layout_marginStart="75dp"
+                android:layout_marginLeft="75dp" />
+
+
+            <ImageView
+                android:layout_width="600dp"
+                android:layout_height="500dp"
+                android:id="@+id/HelpImage2"
+                android:layout_marginStart="75dp"
+                android:layout_marginLeft="75dp"
+                android:layout_marginTop="450dp"
+                app:srcCompat="@drawable/help_screen_2"
+                android:contentDescription="Help Menu" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/Help_Text2"
+                android:layout_marginTop="900dp"
+                android:layout_marginStart="75dp"
+                android:layout_marginLeft="75dp" />
         </RelativeLayout>
     </ScrollView>
 
