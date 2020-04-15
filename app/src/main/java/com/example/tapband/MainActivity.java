@@ -40,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
     MediaRecorder mediaRecorder;
     MediaPlayer mediaPlayer;
     long recordTime = 0;
+    long recordTime2 = 0;
     long pauseTime = 0;
     int player = 0;
     CountDownTimer count;
@@ -141,16 +142,16 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v){
                 if (color == 0) {
-                    start = System.currentTimeMillis();
+                    start = System.currentTimeMillis();//Tracks how long the recording is
 
-                    recordButton.setBackgroundResource(R.drawable.round_button_green);
+                    recordButton.setBackgroundResource(R.drawable.round_button_green);//Switches the color
 
-                    if(checkPermission()) {
+                    if(checkPermission()) {//Makes sure recording is allowed
                         saveAudio = Environment.getExternalStorageDirectory().getAbsolutePath() + "/" + "Recording" + "AudioRecording.3gp";
 
                         createMediaRecorder();
 
-                        try{
+                        try{//Starts up the media recorder
                             mediaRecorder.prepare();
                             mediaRecorder.start();
                             //This is to test on Kofi's device
@@ -163,13 +164,14 @@ public class MainActivity extends AppCompatActivity {
                     } else {
                         requestPermission();
                     }
-                    color = 1;
+                    color = 1;//Changes to the stop recording button
                 }else{
-                    recordButton.setBackgroundResource(R.drawable.round_button_red);
+                    recordButton.setBackgroundResource(R.drawable.round_button_red);//Switches the color
                     mediaRecorder.stop();
 
-                    end = System.currentTimeMillis();
+                    end = System.currentTimeMillis();//Lets the program know how long the recording was
                     recordTime = end - start;
+                    recordTime2 = recordTime;
 
                     Toast.makeText(MainActivity.this, "Recording stopped", Toast.LENGTH_LONG).show();
                     playButton.setEnabled(true);
@@ -183,8 +185,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) throws IllegalArgumentException, SecurityException, IllegalStateException{
                 if(player == 0) {
-                    playButton.setBackgroundResource(R.drawable.pause);
-                    mediaPlayer = new MediaPlayer();
+                    playButton.setBackgroundResource(R.drawable.pause);//Switches the look
+                    mediaPlayer = new MediaPlayer();//Started the media player
                     try {
                         mediaPlayer.setDataSource(saveAudio);
                         mediaPlayer.prepare();
@@ -197,14 +199,14 @@ public class MainActivity extends AppCompatActivity {
                     player = 1;
 
                     //New attempt at countdown
-                    count = new CountDownTimer(recordTime, 500){
+                    count = new CountDownTimer(recordTime, 500){//Counts dow until the button needs to be switched back over
                         @Override
                         public void onTick(long millisUntilFinished) {
                             pauseTime = millisUntilFinished;
                         }
 
                         @Override
-                        public void onFinish() {
+                        public void onFinish() {//Switches the timer over
                             player = 0;
                             playButton.setBackgroundResource(R.drawable.play);
                         }
@@ -246,11 +248,12 @@ public class MainActivity extends AppCompatActivity {
                     playButton.setBackgroundResource(R.drawable.pause);
 
                     //Attempt
-                    count = new CountDownTimer(recordTime, 200){
+                    recordTime = recordTime2;
+                    count = new CountDownTimer(recordTime, 500){
 
                         @Override
                         public void onTick(long millisUntilFinished) {
-                            recordTime -= 200;
+                            pauseTime = millisUntilFinished;
                         }
 
                         @Override
@@ -258,7 +261,7 @@ public class MainActivity extends AppCompatActivity {
                             player = 0;
                             playButton.setBackgroundResource(R.drawable.play);
                         }
-                    };
+                    }.start();
                     //End
 
                     mediaPlayer = new MediaPlayer();
