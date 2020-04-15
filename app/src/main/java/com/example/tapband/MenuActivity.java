@@ -72,6 +72,8 @@ public class MenuActivity extends AppCompatActivity {
 
         );
 
+        keyboardIntent.putExtra("colors", colorArray[currentColor]);
+
         //Button click listener -- aka this gets called when the continue button is pressed
         nextActivityButton.setOnClickListener(new View.OnClickListener() {
             @Override
