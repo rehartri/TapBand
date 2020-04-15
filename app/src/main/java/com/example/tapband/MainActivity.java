@@ -1,5 +1,6 @@
 package com.example.tapband;
 
+import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.media.MediaRecorder;
 import android.os.CountDownTimer;
@@ -53,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
         int currentImage = intent.getIntExtra("currentImage", 0);
 
         menuButton = findViewById(R.id.Menu);
+        helpButton = findViewById(R.id.Help);
 
         //Buttons to work the record aspect
         recordButton = findViewById(R.id.Record);
@@ -75,6 +77,36 @@ public class MainActivity extends AppCompatActivity {
         Button GSharp = findViewById(R.id.GSharp);
         Button ASharp = findViewById(R.id.ASharp);
 
+        Button CLo = findViewById(R.id.CLo);
+        Button D = findViewById(R.id.D);
+        Button E = findViewById(R.id.E);
+        Button F = findViewById(R.id.F);
+        Button G = findViewById(R.id.G);
+        Button A = findViewById(R.id.A);
+        Button B = findViewById(R.id.B);
+        Button CHi = findViewById(R.id.CHi);
+
+        //Color change stuff
+        int[] colors = intent.getIntArrayExtra("colors");
+        menuButton.setBackgroundColor(getResources().getColor(colors[3]));
+        helpButton.setBackgroundColor(getResources().getColor(colors[3]));
+        CLo.setBackgroundColor(getResources().getColor(colors[1]));
+        D.setBackgroundColor(getResources().getColor(colors[1]));
+        E.setBackgroundColor(getResources().getColor(colors[1]));
+        F.setBackgroundColor(getResources().getColor(colors[1]));
+        G.setBackgroundColor(getResources().getColor(colors[1]));
+        A.setBackgroundColor(getResources().getColor(colors[1]));
+        B.setBackgroundColor(getResources().getColor(colors[1]));
+        CHi.setBackgroundColor(getResources().getColor(colors[1]));
+
+        menuButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                nextScreen();
+            }
+        });
+
+
         //If you touch these the buttons will be messed up, this is the only way I could find to do this
         CSharp.bringToFront();
         DSharp.bringToFront();
@@ -83,7 +115,6 @@ public class MainActivity extends AppCompatActivity {
         ASharp.bringToFront();
 
         //Provides the functionality for the help button. Please do not delete!
-        helpButton = findViewById(R.id.Help);
         helpButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -92,7 +123,6 @@ public class MainActivity extends AppCompatActivity {
         });
 
         //Provides the functionality for the menu button. Please do not delete!
-        menuButton = findViewById(R.id.Menu);
         menuButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
