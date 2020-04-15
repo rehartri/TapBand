@@ -106,10 +106,12 @@ public class MainActivity extends AppCompatActivity {
 
         recordButton.setOnClickListener(new View.OnClickListener(){//Sets up usability of record button
             int color = 0;
+            long start = 0;
+            long end = 0;
             @Override
             public void onClick(View v){
                 if (color == 0) {
-                    long start = System.currentTimeMillis();
+                    start = System.currentTimeMillis();
 
                     recordButton.setBackgroundResource(R.drawable.round_button_green);
 
@@ -131,13 +133,14 @@ public class MainActivity extends AppCompatActivity {
                     } else {
                         requestPermission();
                     }
-
-                    long end = System.currentTimeMillis();
-                    recordTime = end - start;
                     color = 1;
                 }else{
                     recordButton.setBackgroundResource(R.drawable.round_button_red);
                     mediaRecorder.stop();
+
+                    end = System.currentTimeMillis();
+                    recordTime = end - start;
+
                     Toast.makeText(MainActivity.this, "Recording stopped", Toast.LENGTH_LONG).show();
                     playButton.setEnabled(true);
                     color = 0;
@@ -163,21 +166,16 @@ public class MainActivity extends AppCompatActivity {
 
                     player = 1;
 
-                    String r = Long.toString(recordTime);
-                    Toast.makeText(MainActivity.this, r, Toast.LENGTH_LONG).show();
-
                     //New attempt at countdown
                     count = new CountDownTimer(recordTime, 500){
                         @Override
                         public void onTick(long millisUntilFinished) {
                             pauseTime = millisUntilFinished;
-                            Toast.makeText(MainActivity.this, "Tick", Toast.LENGTH_LONG).show();
                         }
 
                         @Override
                         public void onFinish() {
                             player = 0;
-                            Toast.makeText(MainActivity.this, "Done", Toast.LENGTH_LONG).show();
                             playButton.setBackgroundResource(R.drawable.play);
                         }
                     }.start();
