@@ -173,7 +173,7 @@ public class MainActivity extends AppCompatActivity {
                     recordTime = end - start;
                     recordTime2 = recordTime;
 
-                    Toast.makeText(MainActivity.this, "Recording stopped", Toast.LENGTH_LONG).show();
+                    Toast.makeText(MainActivity.this, "Recording stopped", Toast.LENGTH_LONG).show();//Lets the play pause button start to work
                     playButton.setEnabled(true);
                     color = 0;
                 }
@@ -209,6 +209,7 @@ public class MainActivity extends AppCompatActivity {
                         public void onFinish() {//Switches the timer over
                             player = 0;
                             playButton.setBackgroundResource(R.drawable.play);
+                            recordTime = recordTime2;//Resets the record time
                         }
                     }.start();
                     //End
@@ -218,7 +219,7 @@ public class MainActivity extends AppCompatActivity {
                     count.cancel();
                     recordTime = pauseTime;
                     //End
-                    playButton.setBackgroundResource(R.drawable.play);
+                    playButton.setBackgroundResource(R.drawable.play);//Switches over the look
                     if(mediaPlayer.isPlaying()) {
                         mediaPlayer.pause();
                     }
@@ -235,20 +236,30 @@ public class MainActivity extends AppCompatActivity {
             private long clickTime;
 
             @Override
-            public void onClick(View v) throws IllegalStateException, SecurityException{
+            public void onClick(View v) throws IllegalStateException, SecurityException{//Checks to be sure restart isn't being pressed too fast
                 long timedClick = clickTime;
                 long now = System.currentTimeMillis();
                 clickTime = now;
                 if(now - timedClick < MIN_DELAY) {
                     Toast.makeText(MainActivity.this,"STOP SPAMMING", Toast.LENGTH_LONG).show();
-                }else {
+                }else {//Starts the media player
                     mediaPlayer.stop();
 
-                    player = 0;
+                    player = 0;//Resets the play pause button
                     playButton.setBackgroundResource(R.drawable.pause);
+                    count.cancel();
+
+                    mediaPlayer = new MediaPlayer();//Gets the media player going
+                    try {
+                        mediaPlayer.setDataSource(saveAudio);
+                        mediaPlayer.prepare();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    mediaPlayer.start();
 
                     //Attempt
-                    recordTime = recordTime2;
+                    recordTime = recordTime2;//Get the play pause to display properly using a countdown timer
                     count = new CountDownTimer(recordTime, 500){
 
                         @Override
@@ -263,15 +274,6 @@ public class MainActivity extends AppCompatActivity {
                         }
                     }.start();
                     //End
-
-                    mediaPlayer = new MediaPlayer();
-                    try {
-                        mediaPlayer.setDataSource(saveAudio);
-                        mediaPlayer.prepare();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                    mediaPlayer.start();
                 }
             }
         });
