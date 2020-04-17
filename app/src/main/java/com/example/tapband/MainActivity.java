@@ -239,7 +239,7 @@ public class MainActivity extends AppCompatActivity {
                 long now = System.currentTimeMillis();
                 clickTime = now;
                 if(now - timedClick < MIN_DELAY) {//Doesn't allow the spam clicks to work
-                    Toast.makeText(MainActivity.this,"STOP SPAMMING", Toast.LENGTH_LONG).show();
+                    Toast.makeText(MainActivity.this,"Please sir/ma'am do not spam.", Toast.LENGTH_LONG).show();
                 }else {//Starts the media player
                     mediaPlayer.stop();//Cancels any currently playing media player
 
