@@ -136,22 +136,22 @@ public class MainActivity extends AppCompatActivity {
         setInstrument(getIntent().getIntExtra("type", 0)); //Creates instrument based on selection in menu
 
         recordButton.setOnClickListener(new View.OnClickListener(){//Sets up usability of record button
-            int color = 0;
-            long start = 0;
-            long end = 0;
+            int color = 0;//Tells the on click listener to go to record or stop recording
+            long start = 0;//Keeps track of the start of the recording
+            long end = 0;//Keeps track of the end of the recording
             @Override
-            public void onClick(View v){
+            public void onClick(View v){//Activates on click
                 if (color == 0) {
                     start = System.currentTimeMillis();//Tracks how long the recording is
 
                     recordButton.setBackgroundResource(R.drawable.round_button_green);//Switches the color
 
-                    if(checkPermission()) {//Makes sure recording is allowed
-                        saveAudio = Environment.getExternalStorageDirectory().getAbsolutePath() + "/" + "Recording" + "AudioRecording.3gp";
+                    if(checkPermission()) {//Only goes through the next steps if microphone and speakers can be used
+                        saveAudio = Environment.getExternalStorageDirectory().getAbsolutePath() + "/" + "Recording" + "AudioRecording.3gp";//Only saves one recording to the phone under the name AudioRecording
 
                         createMediaRecorder();
 
-                        try{//Starts up the media recorder
+                        try{//Starts up the media recorder if there is no Illegal state or IO Exception
                             mediaRecorder.prepare();
                             mediaRecorder.start();
                             //This is to test on Kofi's device
@@ -162,12 +162,12 @@ public class MainActivity extends AppCompatActivity {
                             e.printStackTrace();
                         }
                     } else {
-                        requestPermission();
+                        requestPermission();//Gets the permissions that were not yet acquired
                     }
                     color = 1;//Changes to the stop recording button
                 }else{
                     recordButton.setBackgroundResource(R.drawable.round_button_red);//Switches the color
-                    mediaRecorder.stop();
+                    mediaRecorder.stop();//Makes it so that the recorder is no longer running
 
                     end = System.currentTimeMillis();//Lets the program know how long the recording was
                     recordTime = end - start;
@@ -175,7 +175,7 @@ public class MainActivity extends AppCompatActivity {
 
                     Toast.makeText(MainActivity.this, "Recording stopped", Toast.LENGTH_LONG).show();//Lets the play pause button start to work
                     playButton.setEnabled(true);
-                    color = 0;
+                    color = 0;//Switches the button back over to record mode
                 }
             }
         });
@@ -187,26 +187,26 @@ public class MainActivity extends AppCompatActivity {
                 if(player == 0) {
                     playButton.setBackgroundResource(R.drawable.pause);//Switches the look
                     mediaPlayer = new MediaPlayer();//Started the media player
-                    try {
+                    try {//Starts up the player as long as there is not IO Exception
                         mediaPlayer.setDataSource(saveAudio);
                         mediaPlayer.prepare();
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-                    mediaPlayer.start();
+                    mediaPlayer.start();//Starts playing back your recording
                     restartButton.setEnabled(true);
 
-                    player = 1;
+                    player = 1;//Switches into the pause position for the time being
 
-                    //New attempt at countdown
+                    //Countdown that switches the appearance and action of the play/pause button if/when the recording is done playing
                     count = new CountDownTimer(recordTime, 500){//Counts dow until the button needs to be switched back over
                         @Override
                         public void onTick(long millisUntilFinished) {
-                            pauseTime = millisUntilFinished;
+                            pauseTime = millisUntilFinished;//Changes so that if paused the button still switches at the correct time
                         }
 
                         @Override
-                        public void onFinish() {//Switches the timer over
+                        public void onFinish() {//Switches the timer over, and fixes the appearance and action of the play/pause button
                             player = 0;
                             playButton.setBackgroundResource(R.drawable.play);
                             recordTime = recordTime2;//Resets the record time
@@ -215,23 +215,23 @@ public class MainActivity extends AppCompatActivity {
                     //End
 
                 }else{
-                    //Attempt
+                    //Stops and updates the countdown aspects to continue to work when play pressed
                     count.cancel();
                     recordTime = pauseTime;
-                    //End
+
                     playButton.setBackgroundResource(R.drawable.play);//Switches over the look
-                    if(mediaPlayer.isPlaying()) {
+                    if(mediaPlayer.isPlaying()) {//Pause only if there is a recording currently playing
                         mediaPlayer.pause();
                     }
 
-                    player = 0;
+                    player = 0;//Switches back over to play button mode
                 }
             }
         });
 
         restartButton.setOnClickListener(new View.OnClickListener(){
 
-            private static final long MIN_DELAY = 500;//Prevent button spam
+            private static final long MIN_DELAY = 500;//Prevent button spam on half second delays
 
             private long clickTime;
 
@@ -240,16 +240,16 @@ public class MainActivity extends AppCompatActivity {
                 long timedClick = clickTime;
                 long now = System.currentTimeMillis();
                 clickTime = now;
-                if(now - timedClick < MIN_DELAY) {
+                if(now - timedClick < MIN_DELAY) {//Doesn't allow the spam clicks to work
                     Toast.makeText(MainActivity.this,"STOP SPAMMING", Toast.LENGTH_LONG).show();
                 }else {//Starts the media player
-                    mediaPlayer.stop();
+                    mediaPlayer.stop();//Cancels any currently playing media player
 
-                    player = 0;//Resets the play pause button
+                    player = 0;//Resets the play pause button and countdown timer
                     playButton.setBackgroundResource(R.drawable.pause);
                     count.cancel();
 
-                    mediaPlayer = new MediaPlayer();//Gets the media player going
+                    mediaPlayer = new MediaPlayer();//Gets the media player going as long as there is no IO Exception
                     try {
                         mediaPlayer.setDataSource(saveAudio);
                         mediaPlayer.prepare();
@@ -258,22 +258,21 @@ public class MainActivity extends AppCompatActivity {
                     }
                     mediaPlayer.start();
 
-                    //Attempt
+                    //Countdown to when the pause button should change functionality and display back to play button
                     recordTime = recordTime2;//Get the play pause to display properly using a countdown timer
                     count = new CountDownTimer(recordTime, 500){
 
                         @Override
                         public void onTick(long millisUntilFinished) {
-                            pauseTime = millisUntilFinished;
+                            pauseTime = millisUntilFinished;//Changes so that the countdown starts from the properish spot
                         }
 
                         @Override
-                        public void onFinish() {
+                        public void onFinish() {//Switches the pause button back over to play
                             player = 0;
                             playButton.setBackgroundResource(R.drawable.play);
                         }
                     }.start();
-                    //End
                 }
             }
         });
