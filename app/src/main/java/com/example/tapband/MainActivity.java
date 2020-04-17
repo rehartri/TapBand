@@ -133,6 +133,8 @@ public class MainActivity extends AppCompatActivity {
 
         setInstrument(getIntent().getIntExtra("type", 0)); //Creates instrument based on selection in menu
 
+        Toast.makeText(MainActivity.this, "Loading...", Toast.LENGTH_SHORT).show();//Buffers the delay of the keyboard
+
         recordButton.setOnClickListener(new View.OnClickListener(){//Sets up usability of record button
             int color = 0;//Tells the on click listener to go to record or stop recording
             long start = 0;//Keeps track of the start of the recording
