@@ -52,7 +52,7 @@ public class MenuActivity extends AppCompatActivity {
         logoImage = findViewById(R.id.logoBar);
         logoText = findViewById(R.id.textView);
 
-        final int[] drawables = new int[] { R.drawable.piano, R.drawable.synth, R.drawable.flute}; // Put images here
+        final int[] drawables = new int[] { R.drawable.piano, R.drawable.synth, R.drawable.flute, R.drawable.guitar}; // Put images here
 
         final int[][] colorArray = new int[][] { { R.color.colorPrimary, R.color.ButtonColor, R.color.ButtonColor2, R.color.MenuButtons }, {R.color.RedPrimary, R.color.Red, R.color.RedDark, R.color.RedLight}, {R.color.GrayPrimary ,R.color.Gray, R.color.GrayDark, R.color.GrayLight} } ;
 

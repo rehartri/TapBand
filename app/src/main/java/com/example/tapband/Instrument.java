@@ -224,6 +224,10 @@ class Instrument {
                 fluteBuild();
                 break;
 
+            case 3:
+                guitarBuild();
+                break;
+
             default:
                 pianoBuild();
                 break;
@@ -391,5 +395,44 @@ class Instrument {
         soundIDs.add(R.raw.flute_b6);
         //Octave 4
         soundIDs.add(R.raw.flute_c7);
+    }
+
+    /**
+     * Changes the sounds in the sound list to guitar notes
+     */
+    private void guitarBuild(){
+        if(soundIDs != null){
+            soundIDs.clear();
+        }
+
+        //Octave 1
+        soundIDs.add(R.raw.guitar_c1);
+        soundIDs.add(R.raw.guitar_csharp1);
+        soundIDs.add(R.raw.guitar_d1);
+        soundIDs.add(R.raw.guitar_dsharp1);
+        soundIDs.add(R.raw.guitar_e2);
+        soundIDs.add(R.raw.guitar_f2);
+        soundIDs.add(R.raw.guitar_fsharp2);
+        soundIDs.add(R.raw.guitar_g2);
+        soundIDs.add(R.raw.guitar_gsharp2);
+        soundIDs.add(R.raw.guitar_a2);
+        soundIDs.add(R.raw.guitar_asharp2);
+        soundIDs.add(R.raw.guitar_b2);
+        //Octave 2
+        soundIDs.add(R.raw.guitar_c2);
+        soundIDs.add(R.raw.guitar_csharp2);
+        soundIDs.add(R.raw.guitar_d2);
+        soundIDs.add(R.raw.guitar_dsharp2);
+        soundIDs.add(R.raw.guitar_e3);
+        soundIDs.add(R.raw.guitar_f3);
+        soundIDs.add(R.raw.guitar_fsharp3);
+        soundIDs.add(R.raw.guitar_g3);
+        soundIDs.add(R.raw.guitar_gsharp3);
+        soundIDs.add(R.raw.guitar_a3);
+        soundIDs.add(R.raw.guitar_asharp3);
+        soundIDs.add(R.raw.guitar_b3);
+
+        //Octave 3
+        soundIDs.add(R.raw.guitar_c3);
     }
 }
