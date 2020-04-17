@@ -1,6 +1,5 @@
 package com.example.tapband;
 
-import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.media.MediaRecorder;
 import android.os.CountDownTimer;
@@ -29,7 +28,6 @@ public class MainActivity extends AppCompatActivity {
     Button helpButton; //Button to reach the help menu
     Button menuButton; //Button to go back to main menu.
     Button playButton;
-    Button pauseButton;
     Button restartButton;
     ArrayList<KeyType> buttonList;
 
@@ -315,6 +313,7 @@ public class MainActivity extends AppCompatActivity {
         }
         instrument = createInstrument();
         instrument.setType(type);
+        instrument.setColor(getIntent().getIntArrayExtra("colors")[3]);
     }
 
     /*

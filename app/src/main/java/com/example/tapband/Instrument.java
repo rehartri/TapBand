@@ -246,6 +246,12 @@ class Instrument {
         seekBar.setProgress(seekBar.getMax() / 2);
     }
 
+    void setColor(int color){
+        for(Key key : keyList){
+            key.setColor(color);
+        }
+    }
+
     /**
      * Changes the sounds in the sound list to piano notes
      */

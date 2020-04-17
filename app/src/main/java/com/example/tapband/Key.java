@@ -18,6 +18,7 @@ class Key{
     private Button button; //Button the key is associated with
     private Key currentKey; //The current key used during the touch event that originated from this key
     private int color; //Initial color of the key
+    private int colorPrime; //Color the key changes to when it is pressed
     private int octave = 1;  //Determines what sounds are played by the SoundPool
     private int volume = 1; //Determines how loud each sound will play
     private int index; //Keeps track of which key in the piano this is
@@ -44,7 +45,7 @@ class Key{
         if (!pressed) {
             pressed = true;
             pool.play(sounds.get(octave),1, 1, 0, 0, 1);
-            button.setBackgroundColor(Color.argb(255, 0, 176, 255));
+            button.setBackgroundColor(mainContext.getResources().getColor(colorPrime));
         }
     }
 
@@ -110,5 +111,9 @@ class Key{
 
     public void setSoundPool(SoundPool soundPool){
         pool = soundPool;
+    }
+
+    public void setColor(int color){
+        colorPrime = color;
     }
 }
