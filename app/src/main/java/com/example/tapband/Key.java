@@ -1,13 +1,8 @@
 package com.example.tapband;
 
 import android.content.Context;
-import android.graphics.Color;
-import android.graphics.Rect;
 import android.graphics.drawable.ColorDrawable;
-import android.media.AudioAttributes;
-import android.media.AudioManager;
 import android.media.SoundPool;
-import android.os.Build;
 import android.widget.Button;
 import java.util.ArrayList;
 
@@ -20,7 +15,6 @@ class Key{
     private int color; //Initial color of the key
     private int colorPrime; //Color the key changes to when it is pressed
     private int octave = 1;  //Determines what sounds are played by the SoundPool
-    private int volume = 1; //Determines how loud each sound will play
     private int index; //Keeps track of which key in the piano this is
     private boolean pressed = false; //Helps with touch events
     private boolean sharp; //Helps with touch events by determining weather or not to switch between keys on overlap
@@ -41,7 +35,7 @@ class Key{
     /**
      * Changes the color of the key and plays sounds
      */
-    public void start(){
+    void start(){
         if (!pressed) {
             pressed = true;
             pool.play(sounds.get(octave),1, 1, 0, 0, 1);
@@ -52,7 +46,7 @@ class Key{
     /**
      * Changes the color of the key back to the original color
      */
-    public void end(){
+    void end(){
         button.setBackgroundColor(color);
         pressed = false;
     }
@@ -74,14 +68,6 @@ class Key{
     }
 
     /**
-     * Changes the volume at which the keys play each sound
-     * @param volume The value the SoundPool uses for the left and right volume
-     */
-    void setVolume(int volume){
-        this.volume = volume;
-    }
-
-    /**
      * Changes the octave of the instrument which determines the sounds used by the key
      * @param octave The new octave
      */
@@ -93,23 +79,23 @@ class Key{
         return button;
     }
 
-    public int getIndex(){
+    int getIndex(){
         return index;
     }
 
-    public boolean isSharp(){
+    boolean isSharp(){
         return sharp;
     }
 
-    public Key getCurrentKey(){
+    Key getCurrentKey(){
         return currentKey;
     }
 
-    public void setCurrentKey(Key currentKey){
+    void setCurrentKey(Key currentKey){
         this.currentKey = currentKey;
     }
 
-    public void setSoundPool(SoundPool soundPool){
+    void setSoundPool(SoundPool soundPool){
         pool = soundPool;
     }
 

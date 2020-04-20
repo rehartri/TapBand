@@ -17,7 +17,7 @@ class Instrument {
     private ArrayList<Key> sharpKeyList = new ArrayList<>(); //List of all the sharp keys which helps reduce searching in touch listener
     private ArrayList<Integer> soundIDs = new ArrayList<>(); //List of id numbers for the sounds in the instrument
     private SoundPool pool; //Handles all of the sounds for the instrument
-    private SeekBar seekBar;
+    private SeekBar seekBar;  //The seek bar that controls the instrument octave
     private int type = -1; //The value that determines the type of instrument created
 
 
@@ -170,7 +170,7 @@ class Instrument {
                 return key.getCurrentKey().getButton().getHeight();
             }
         });
-        }
+    }
 
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
@@ -256,9 +256,7 @@ class Instrument {
      * Changes the sounds in the sound list to piano notes
      */
     private void pianoBuild(){
-        if(soundIDs != null){
-            soundIDs.clear();
-        }
+        soundIDs.clear();
         //Octave 1
         soundIDs.add(R.raw.piano_c3);
         soundIDs.add(R.raw.piano_csharp3);
@@ -306,9 +304,7 @@ class Instrument {
      * Changes the sounds in the sound list to synthesizer notes
      */
     private void synthBuild(){
-        if(soundIDs != null){
-            soundIDs.clear();
-        }
+        soundIDs.clear();
         //Octave 1
         soundIDs.add(R.raw.synth_c3);
         soundIDs.add(R.raw.synth_csharp3);
@@ -356,10 +352,7 @@ class Instrument {
      * Changes the sounds in the sound list to flute notes
      */
     private void fluteBuild(){
-        if(soundIDs != null){
-            soundIDs.clear();
-        }
-
+        soundIDs.clear();
         //Octave 1
         soundIDs.add(R.raw.flute_c4);
         soundIDs.add(R.raw.flute_csharp4);
@@ -407,15 +400,25 @@ class Instrument {
      * Changes the sounds in the sound list to guitar notes
      */
     private void guitarBuild(){
-        if(soundIDs != null){
-            soundIDs.clear();
-        }
-
+        soundIDs.clear();
         //Octave 1
         soundIDs.add(R.raw.guitar_c1);
         soundIDs.add(R.raw.guitar_csharp1);
         soundIDs.add(R.raw.guitar_d1);
         soundIDs.add(R.raw.guitar_dsharp1);
+        soundIDs.add(R.raw.guitar_e1);
+        soundIDs.add(R.raw.guitar_f1);
+        soundIDs.add(R.raw.guitar_fsharp1);
+        soundIDs.add(R.raw.guitar_g1);
+        soundIDs.add(R.raw.guitar_gsharp1);
+        soundIDs.add(R.raw.guitar_a1);
+        soundIDs.add(R.raw.guitar_asharp1);
+        soundIDs.add(R.raw.guitar_b1);
+        //Octave 2
+        soundIDs.add(R.raw.guitar_c2);
+        soundIDs.add(R.raw.guitar_csharp2);
+        soundIDs.add(R.raw.guitar_d2);
+        soundIDs.add(R.raw.guitar_dsharp2);
         soundIDs.add(R.raw.guitar_e2);
         soundIDs.add(R.raw.guitar_f2);
         soundIDs.add(R.raw.guitar_fsharp2);
@@ -424,20 +427,6 @@ class Instrument {
         soundIDs.add(R.raw.guitar_a2);
         soundIDs.add(R.raw.guitar_asharp2);
         soundIDs.add(R.raw.guitar_b2);
-        //Octave 2
-        soundIDs.add(R.raw.guitar_c2);
-        soundIDs.add(R.raw.guitar_csharp2);
-        soundIDs.add(R.raw.guitar_d2);
-        soundIDs.add(R.raw.guitar_dsharp2);
-        soundIDs.add(R.raw.guitar_e3);
-        soundIDs.add(R.raw.guitar_f3);
-        soundIDs.add(R.raw.guitar_fsharp3);
-        soundIDs.add(R.raw.guitar_g3);
-        soundIDs.add(R.raw.guitar_gsharp3);
-        soundIDs.add(R.raw.guitar_a3);
-        soundIDs.add(R.raw.guitar_asharp3);
-        soundIDs.add(R.raw.guitar_b3);
-
         //Octave 3
         soundIDs.add(R.raw.guitar_c3);
     }
